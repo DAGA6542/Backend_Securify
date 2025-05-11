@@ -1,5 +1,6 @@
 package com.example.backend_securify.entities;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,17 +12,11 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Usuario {
+@Table(name = "rol")
+public class Rol {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idUsuario")
-    private Long idUsuario;
+    @Column(name = "idRol")
+    private Long idRol;
     private String nombre;
-    private String apellido;
-    private String email;
-    private String contrasenia;
-    @ManyToOne
-    @JoinColumn(name = "id_rol")
-    private Rol rol;
-
 }
