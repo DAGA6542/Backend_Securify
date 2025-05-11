@@ -7,16 +7,14 @@ import lombok.Setter;
 
 import java.io.Serializable;
 
-@Setter
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class UsuarioDto implements Serializable {
-    Long idUsuario;
+public class TiendaDTO implements Serializable {
+    Long id_tienda;
     String nombre;
-    String apellido;
-    String email;
-    String contrasenia;
-    RolDto rol;
+    String descripcion;
+    Long usuarioId;
 }

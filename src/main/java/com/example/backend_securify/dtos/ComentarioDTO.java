@@ -6,13 +6,19 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
-@Setter
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class RolDto implements Serializable {
-    Long idRol;
-    String nombre;
+public class ComentarioDTO implements Serializable {
+    Long id_comentario;
+    String contenido;
+    int calificacion;
+    LocalDate fecha;
+    Long usuarioId;
+    Long productoId;
+
 }

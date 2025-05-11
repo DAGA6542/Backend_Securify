@@ -1,16 +1,16 @@
 package com.example.backend_securify.interfaces;
 
-import com.example.backend_securify.dtos.ReporteUsuario;
-import com.example.backend_securify.dtos.UsuarioDto;
+import com.example.backend_securify.dtos.ReporteUsuarioDTO;
+import com.example.backend_securify.dtos.UsuarioDTO;
 
 import java.util.List;
 
 public interface IUsuarioService {
-    List<UsuarioDto> listarUsuarios();
-    UsuarioDto guardarUsuario(UsuarioDto usuarioDto);
-    UsuarioDto actualizarUsuario(Long idUsuario, UsuarioDto usuarioDto);
+    List<UsuarioDTO> listarUsuarios();
+    UsuarioDTO guardarUsuario(UsuarioDTO usuarioDto);
+    UsuarioDTO actualizarUsuario(Long idUsuario, UsuarioDTO usuarioDto);
     void eliminarUsuario(Long idUsuario);
-    List<ReporteUsuario>  obtenerReporteUsuarios();
+    List<ReporteUsuarioDTO>  obtenerReporteUsuarios();
 
 
 }

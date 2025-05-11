@@ -1,7 +1,7 @@
 package com.example.backend_securify.controllers;
 
 
-import com.example.backend_securify.dtos.ComentarioDto;
+import com.example.backend_securify.dtos.ComentarioDTO;
 import com.example.backend_securify.interfaces.IComentario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,20 +16,20 @@ public class ComentarioController {
     private IComentario comentarioService;
 
     @GetMapping("/listarcometario")
-    public List<ComentarioDto> listar() {
+    public List<ComentarioDTO> listar() {
         return comentarioService.listar();
     }
 
 
     @GetMapping("/actualizarcomentario/{id}")
-    public ResponseEntity<ComentarioDto> actualizarComentario(@PathVariable Long id, @RequestBody ComentarioDto comentarioDto) {
-        ComentarioDto comentarioActualizado = comentarioService.actualizarComentario(id, comentarioDto);
+    public ResponseEntity<ComentarioDTO> actualizarComentario(@PathVariable Long id, @RequestBody ComentarioDTO comentarioDto) {
+        ComentarioDTO comentarioActualizado = comentarioService.actualizarComentario(id, comentarioDto);
         return ResponseEntity.ok(comentarioActualizado);
     }
 
 
     @PostMapping("/guardarcomentario")
-    public ComentarioDto guardar(@RequestBody ComentarioDto comentario) {
+    public ComentarioDTO guardar(@RequestBody ComentarioDTO comentario) {
         return comentarioService.guardarComentario(comentario);
     }
 

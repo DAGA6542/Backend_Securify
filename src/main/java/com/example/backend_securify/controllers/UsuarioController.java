@@ -1,7 +1,7 @@
 package com.example.backend_securify.controllers;
 
-import com.example.backend_securify.dtos.ReporteUsuario;
-import com.example.backend_securify.dtos.UsuarioDto;
+import com.example.backend_securify.dtos.ReporteUsuarioDTO;
+import com.example.backend_securify.dtos.UsuarioDTO;
 import com.example.backend_securify.interfaces.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,19 +16,19 @@ public class UsuarioController {
     private IUsuarioService usuarioService;
 
     @GetMapping("/listaUsuario")
-    public List<UsuarioDto> listarUsuario() {
+    public List<UsuarioDTO> listarUsuario() {
         return usuarioService.listarUsuarios();
 
     }
 
     @PostMapping("/guardaUsuario")
-    public UsuarioDto guardarUsuario(@RequestBody UsuarioDto usuarioDto) {
+    public UsuarioDTO guardarUsuario(@RequestBody UsuarioDTO usuarioDto) {
         return usuarioService.guardarUsuario(usuarioDto);
     }
 
     @PutMapping("/actualizarUsuario/{idUsuario}")
-    public ResponseEntity<UsuarioDto> actualizarUsuario(@PathVariable Long idUsuario, @RequestBody UsuarioDto usuarioDto) {
-        UsuarioDto usuarioActualizado = usuarioService.actualizarUsuario(idUsuario, usuarioDto);
+    public ResponseEntity<UsuarioDTO> actualizarUsuario(@PathVariable Long idUsuario, @RequestBody UsuarioDTO usuarioDto) {
+        UsuarioDTO usuarioActualizado = usuarioService.actualizarUsuario(idUsuario, usuarioDto);
         return  ResponseEntity.ok(usuarioActualizado);
     }
 
@@ -39,7 +39,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/listarReporte")
-    public List<ReporteUsuario> listarReportes() {
+    public List<ReporteUsuarioDTO> listarReportes() {
         return usuarioService.obtenerReporteUsuarios();
     }
 }

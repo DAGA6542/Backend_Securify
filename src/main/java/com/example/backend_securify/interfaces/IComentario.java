@@ -1,16 +1,16 @@
 package com.example.backend_securify.interfaces;
 
-import com.example.backend_securify.dtos.ComentarioDto;
+import com.example.backend_securify.dtos.ComentarioDTO;
 
 import java.util.List;
 
 public interface IComentario {
 
-    List<ComentarioDto> listar();
+    List<ComentarioDTO> listar();
 
-    ComentarioDto actualizarComentario(Long idComentario, ComentarioDto comentario);
+    ComentarioDTO actualizarComentario(Long idComentario, ComentarioDTO comentario);
 
-    ComentarioDto guardarComentario(ComentarioDto comentario);
+    ComentarioDTO guardarComentario(ComentarioDTO comentario);
 
     void eliminarComentario(Long idComentario);
 }

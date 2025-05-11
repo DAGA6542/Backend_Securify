@@ -1,10 +1,10 @@
 package com.example.backend_securify.services;
 
-import com.example.backend_securify.dtos.ReporteUsuario;
-import com.example.backend_securify.dtos.UsuarioDto;
+import com.example.backend_securify.dtos.ReporteUsuarioDTO;
+import com.example.backend_securify.dtos.UsuarioDTO;
 import com.example.backend_securify.entities.Usuario;
 import com.example.backend_securify.interfaces.IUsuarioService;
-import com.example.backend_securify.repositories.UsuarioRepository;
+import com.example.backend_securify.repositories.IUsuarioRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,41 +16,41 @@ import java.util.stream.Collectors;
 public class UsuarioServices implements IUsuarioService {
 
     @Autowired //inyecta
-    private UsuarioRepository usuarioRepository;
+    private IUsuarioRepository IUsuarioRepository;
     @Autowired
     private ModelMapper modelMapper;
 
 
     @Override
-    public List<UsuarioDto> listarUsuarios() {
-        return usuarioRepository.findAll().stream().map(usuario -> modelMapper.map(usuario, UsuarioDto.class)).collect(Collectors.toList());
+    public List<UsuarioDTO> listarUsuarios() {
+        return IUsuarioRepository.findAll().stream().map(usuario -> modelMapper.map(usuario, UsuarioDTO.class)).collect(Collectors.toList());
     }
 
     @Override
-    public UsuarioDto guardarUsuario(UsuarioDto usuarioDto) {
+    public UsuarioDTO guardarUsuario(UsuarioDTO usuarioDto) {
         Usuario usuario = modelMapper.map(usuarioDto, Usuario.class);
-        Usuario save  = usuarioRepository.save(usuario);
-        return modelMapper.map(save, UsuarioDto.class);
+        Usuario save  = IUsuarioRepository.save(usuario);
+        return modelMapper.map(save, UsuarioDTO.class);
     }
 
     @Override
-    public UsuarioDto actualizarUsuario(Long id_usuario, UsuarioDto usuarioDto) {
-        Usuario u = usuarioRepository.findById(id_usuario).get();
+    public UsuarioDTO actualizarUsuario(Long id_usuario, UsuarioDTO usuarioDto) {
+        Usuario u = IUsuarioRepository.findById(id_usuario).get();
         modelMapper.map(usuarioDto, u);
-        Usuario usuarioActualizado = usuarioRepository.save(u);
-        return modelMapper.map(usuarioActualizado, UsuarioDto.class);
+        Usuario usuarioActualizado = IUsuarioRepository.save(u);
+        return modelMapper.map(usuarioActualizado, UsuarioDTO.class);
     }
 
     @Override
     public void eliminarUsuario(Long idUsuario) {
-        if (usuarioRepository.existsById(idUsuario)) {
-            usuarioRepository.deleteById(idUsuario);
+        if (IUsuarioRepository.existsById(idUsuario)) {
+            IUsuarioRepository.deleteById(idUsuario);
         }
     }
 
     @Override
-    public List<ReporteUsuario>  obtenerReporteUsuarios() {
-        return usuarioRepository.listarUsuarioSeparadoPorFilas();
+    public List<ReporteUsuarioDTO>  obtenerReporteUsuarios() {
+        return IUsuarioRepository.listarUsuarioSeparadoPorFilas();
     }
 
 

@@ -1,9 +1,9 @@
 package com.example.backend_securify.services;
 
-import com.example.backend_securify.dtos.ComentarioDto;
+import com.example.backend_securify.dtos.ComentarioDTO;
 import com.example.backend_securify.entities.Comentario;
 import com.example.backend_securify.interfaces.IComentario;
-import com.example.backend_securify.repositories.ComentarioRepository;
+import com.example.backend_securify.repositories.IComentarioRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,41 +15,41 @@ import java.util.stream.Collectors;
 public class ComentarioService implements IComentario {
 
     @Autowired
-    private ComentarioRepository comentarioRepository;
+    private IComentarioRepository IComentarioRepository;
 
     @Autowired
     private ModelMapper modelMapper;
 
     @Override
-    public List<ComentarioDto> listar() {
-        return comentarioRepository.findAll()
+    public List<ComentarioDTO> listar() {
+        return IComentarioRepository.findAll()
                 .stream()
-                .map(c -> modelMapper.map(c, ComentarioDto.class))
+                .map(c -> modelMapper.map(c, ComentarioDTO.class))
                 .collect(Collectors.toList());
     }
     
     @Override
-    public ComentarioDto actualizarComentario(Long idComentario, ComentarioDto comentario) {
-        Comentario c = comentarioRepository.findById((idComentario)).get();
+    public ComentarioDTO actualizarComentario(Long idComentario, ComentarioDTO comentario) {
+        Comentario c = IComentarioRepository.findById((idComentario)).get();
         modelMapper.map(comentario, c);
-        Comentario comentarioActualizado = comentarioRepository.save(c);
-        return modelMapper.map(comentarioActualizado, ComentarioDto.class);
+        Comentario comentarioActualizado = IComentarioRepository.save(c);
+        return modelMapper.map(comentarioActualizado, ComentarioDTO.class);
     }
 
 
 
 
     @Override
-    public ComentarioDto guardarComentario(ComentarioDto comentario) {
+    public ComentarioDTO guardarComentario(ComentarioDTO comentario) {
         Comentario entidad = modelMapper.map(comentario, Comentario.class);
-        return modelMapper.map(comentarioRepository.save(entidad), ComentarioDto.class);
+        return modelMapper.map(IComentarioRepository.save(entidad), ComentarioDTO.class);
     }
 
 
     @Override
     public void eliminarComentario(Long idComentario) {
-        if (comentarioRepository.existsById((idComentario))){
-            comentarioRepository.deleteById((idComentario));
+        if (IComentarioRepository.existsById((idComentario))){
+            IComentarioRepository.deleteById((idComentario));
         }
     }
 

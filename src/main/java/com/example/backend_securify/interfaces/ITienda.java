@@ -1,13 +1,13 @@
 package com.example.backend_securify.interfaces;
 
-import com.example.backend_securify.dtos.TiendaDto;
+import com.example.backend_securify.dtos.TiendaDTO;
 
 
 import java.util.List;
 
 public interface ITienda {
-    List<TiendaDto> listar();
-    TiendaDto actualizarTienda(Long id_tienda, TiendaDto tienda);
-    TiendaDto guardarTienda(TiendaDto tienda);
+    List<TiendaDTO> listar();
+    TiendaDTO actualizarTienda(Long id_tienda, TiendaDTO tienda);
+    TiendaDTO guardarTienda(TiendaDTO tienda);
     void eliminar(Long id_tienda);
 }

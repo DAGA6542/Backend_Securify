@@ -1,6 +1,6 @@
 package com.example.backend_securify.controllers;
 
-import com.example.backend_securify.dtos.TiendaDto;
+import com.example.backend_securify.dtos.TiendaDTO;
 import com.example.backend_securify.interfaces.ITienda;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,19 +15,19 @@ public class TiendaController {
     private ITienda tiendaService;
 
     @GetMapping("/listartienda")
-    public List<TiendaDto> listar() {
+    public List<TiendaDTO> listar() {
         return tiendaService.listar();
     }
     @PutMapping("/actualizartienda/{id}")
-    public ResponseEntity<TiendaDto> actualizarTienda(@PathVariable Long id, @RequestBody TiendaDto tiendaDto) {
-        TiendaDto tiendaActualizada = tiendaService.actualizarTienda(id, tiendaDto);
+    public ResponseEntity<TiendaDTO> actualizarTienda(@PathVariable Long id, @RequestBody TiendaDTO tiendaDto) {
+        TiendaDTO tiendaActualizada = tiendaService.actualizarTienda(id, tiendaDto);
         return ResponseEntity.ok(tiendaActualizada);
     }
 
 
 
     @PostMapping("/guardartienda")
-    public TiendaDto guardarTienda(@RequestBody TiendaDto tienda) {
+    public TiendaDTO guardarTienda(@RequestBody TiendaDTO tienda) {
 
         return tiendaService.guardarTienda(tienda);
     }
