@@ -10,7 +10,7 @@ import java.util.List;
 public interface IUsuarioRepository extends JpaRepository<Usuario, Long> {
 
 
-    @Query("SELECT new com.example.backend_securify.dtos.ReporteUsuario(u.nombre, u.apellido, u.email, u.rol.nombre)" +
+    @Query("SELECT new com.example.backend_securify.dtos.ReporteUsuarioDTO(u.nombre, u.apellido, u.email, u.rol.nombre)" +
             " from Usuario u ORDER BY u.idUsuario ASC ")
     List<ReporteUsuarioDTO> listarUsuarioSeparadoPorFilas();
 }
