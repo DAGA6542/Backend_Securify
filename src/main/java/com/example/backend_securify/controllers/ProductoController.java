@@ -1,9 +1,11 @@
 package com.example.backend_securify.controllers;
 
 import com.example.backend_securify.dtos.ProductoDTO;
+import com.example.backend_securify.entities.Producto;
 import com.example.backend_securify.interfaces.IProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,5 +39,22 @@ public class ProductoController {
     public ResponseEntity<Void> eliminarProducto(@RequestParam Long idProducto) {
         productoService.eliminarProducto(idProducto);
         return ResponseEntity.noContent().build();
+    }
+
+
+    @GetMapping("/listarPorCategoria")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<List<Producto>> listarProductosPorCategoria(@RequestParam("nombre") String nombreCategoria) {
+        List<Producto> productos = productoService.listarProductosPorCategoria(nombreCategoria);
+
+        return ResponseEntity.ok(productos);
+    }
+
+    @GetMapping("/listarPorPrecio")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<List<Producto>> listarProductosPorPrecioMayorMenor() {
+        List<Producto> productos = productoService.listarProductosPorPrecioMayorMenor();
+
+        return ResponseEntity.ok(productos);
     }
 }

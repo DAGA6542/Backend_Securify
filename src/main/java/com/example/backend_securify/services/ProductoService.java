@@ -51,4 +51,15 @@ public class ProductoService implements IProductoService {
             productoRepository.deleteById(idProducto);
         }
     }
+
+    @Override
+    public List<Producto> listarProductosPorCategoria(String nombreCategoria) {
+        return productoRepository.listarProductosPorCategoria(nombreCategoria);
+    }
+
+    @Override
+    public List<Producto> listarProductosPorPrecioMayorMenor() {
+        return productoRepository.listarProductosPorPrecioMayorMenor();
+    }
+
 }
