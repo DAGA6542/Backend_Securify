@@ -1,27 +1,27 @@
 package com.example.backend_securify.services;
 
-import com.example.backend_securify.entities.Cliente;
-import com.example.backend_securify.interfaces.IClienteService;
-import com.example.backend_securify.repositories.IClienteRepository;
+import com.example.backend_securify.interfaces.IUserService;
+import com.example.backend_securify.repositories.IUserRepository;
+import com.example.backend_securify.security.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class ClienteService implements IClienteService {
+public class UsuarioService implements IUserService {
     @Autowired
-    private IClienteRepository clienteRepository;
+    private IUserRepository clienteRepository;
 
     @Override
-    public Cliente insertar(Cliente cliente) {
-        return clienteRepository.save(cliente);
+    public User insertar(User user) {
+        return clienteRepository.save(user);
     }
 
     @Override
-    public Cliente editar(Cliente cliente) {
-        if (clienteRepository.findById(cliente.getClienteId()).isPresent()) {
-            return clienteRepository.save(cliente);
+    public User editar(User user) {
+        if (clienteRepository.findById(user.getId()).isPresent()) {
+            return clienteRepository.save(user);
         }
         return null;
     }
@@ -34,12 +34,12 @@ public class ClienteService implements IClienteService {
     }
 
     @Override
-    public List<Cliente> listar() {
+    public List<User> listar() {
         return clienteRepository.findAll();
     }
 
     @Override
-    public Cliente buscarPorId(long id) {
+    public User buscarPorId(long id) {
         if(clienteRepository.findById(id).isPresent()){
             return clienteRepository.findById(id).get();
         }
