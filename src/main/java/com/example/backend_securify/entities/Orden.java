@@ -13,11 +13,12 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name="orden")
 
-public class Orden
-{
+public class Orden {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_orden")
     private Long id;
     private LocalDate fecha;
     private String estado;

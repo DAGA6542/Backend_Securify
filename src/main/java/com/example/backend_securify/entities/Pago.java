@@ -13,11 +13,12 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name="pago")
 
-public class Pago
-{
+public class Pago {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_pago")
     private Long id;
     private String metodo;
     private double monto;
