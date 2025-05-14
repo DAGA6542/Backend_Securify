@@ -1,7 +1,7 @@
 package com.example.backend_securify.controllers;
 
 import com.example.backend_securify.dtos.TiendaDTO;
-import com.example.backend_securify.interfaces.ITienda;
+import com.example.backend_securify.interfaces.ITiendaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping("/tiendas")
 public class TiendaController {
     @Autowired
-    private ITienda tiendaService;
+    private ITiendaService tiendaService;
 
     @GetMapping("/listartienda")
     public List<TiendaDTO> listar() {

@@ -4,7 +4,7 @@ import com.example.backend_securify.dtos.ComentarioDTO;
 
 import java.util.List;
 
-public interface IComentario {
+public interface IComentarioService {
 
     List<ComentarioDTO> listar();
 

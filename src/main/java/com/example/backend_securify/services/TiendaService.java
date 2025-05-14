@@ -2,7 +2,7 @@ package com.example.backend_securify.services;
 
 import com.example.backend_securify.dtos.TiendaDTO;
 import com.example.backend_securify.entities.Tienda;
-import com.example.backend_securify.interfaces.ITienda;
+import com.example.backend_securify.interfaces.ITiendaService;
 import com.example.backend_securify.repositories.ITiendaRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class TiendaService implements ITienda {
+public class TiendaService implements ITiendaService {
 
     @Autowired
     private ITiendaRepository ITiendaRepository;
