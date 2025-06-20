@@ -1,5 +1,7 @@
 package com.example.backend_securify.dtos;
 
+import com.example.backend_securify.entities.Producto;
+import com.example.backend_securify.security.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +20,6 @@ public class ComentarioDTO implements Serializable {
     String contenido;
     int calificacion;
     LocalDate fecha;
-    Long usuarioId;
-    Long productoId;
-
+    User user;
+    Producto producto;
 }

@@ -108,3 +108,30 @@ INSERT INTO detalle_orden (id_detalleorden, cantidad, id_producto, id_orden) VAL
 INSERT INTO detalle_orden (id_detalleorden, cantidad, id_producto, id_orden) VALUES (23, 1, 3, 12);
 INSERT INTO detalle_orden (id_detalleorden, cantidad, id_producto, id_orden) VALUES (24, 1, 4, 13);
 INSERT INTO detalle_orden (id_detalleorden, cantidad, id_producto, id_orden) VALUES (25, 2, 5, 14);
+
+INSERT INTO comentario (id_comentario, contenido, calificacion, fecha, user_id, producto_id) VALUES (1, 'Muy buen producto.', 5, '2023-07-01', 2, 1);
+INSERT INTO comentario (id_comentario, contenido, calificacion, fecha, user_id, producto_id) VALUES (2, 'Me gustó la calidad.', 4, '2023-07-05', 1, 2);
+INSERT INTO comentario (id_comentario, contenido, calificacion, fecha, user_id, producto_id) VALUES (3, 'Podría mejorar.', 3, '2023-07-10', 3, 3);
+INSERT INTO comentario (id_comentario, contenido, calificacion, fecha, user_id, producto_id) VALUES (4, 'No era lo que esperaba.', 2, '2023-07-15', 2, 4);
+INSERT INTO comentario (id_comentario, contenido, calificacion, fecha, user_id, producto_id) VALUES (5, 'Excelente relación precio/calidad.', 5, '2023-07-20', 1, 5);
+INSERT INTO comentario (id_comentario, contenido, calificacion, fecha, user_id, producto_id) VALUES (6, 'Buen juguete para niños.', 4, '2023-07-25', 3, 6);
+INSERT INTO comentario (id_comentario, contenido, calificacion, fecha, user_id, producto_id) VALUES (7, 'Cómoda y fresca.', 5, '2023-07-28', 2, 7);
+INSERT INTO comentario (id_comentario, contenido, calificacion, fecha, user_id, producto_id) VALUES (8, 'Velocidad de transferencia alta.', 5, '2023-08-01', 1, 8);
+INSERT INTO comentario (id_comentario, contenido, calificacion, fecha, user_id, producto_id) VALUES (9, 'Muy refrescante.', 4, '2023-08-03', 3, 9);
+INSERT INTO comentario (id_comentario, contenido, calificacion, fecha, user_id, producto_id) VALUES (10,'Me quitó el dolor rápido.', 5, '2023-08-05', 2,10);
+INSERT INTO comentario (id_comentario, contenido, calificacion, fecha, user_id, producto_id) VALUES (11,'Muy buena calidad.', 5, '2023-08-06', 1,11);
+INSERT INTO comentario (id_comentario, contenido, calificacion, fecha, user_id, producto_id) VALUES (12,'Excelente aroma.', 5, '2023-08-07', 3,12);
+INSERT INTO comentario (id_comentario, contenido, calificacion, fecha, user_id, producto_id) VALUES (13,'Ideal para clases y trabajo.', 5, '2023-08-08', 2,13);
+INSERT INTO comentario (id_comentario, contenido, calificacion, fecha, user_id, producto_id) VALUES (14,'Muy rendidor.', 4, '2023-08-09', 1,14);
+INSERT INTO comentario (id_comentario, contenido, calificacion, fecha, user_id, producto_id) VALUES (15,'Buen sabor.', 5, '2023-08-10', 3,15);
+INSERT INTO comentario (id_comentario, contenido, calificacion, fecha, user_id, producto_id) VALUES (16,'Rápido efecto.', 5, '2023-08-11', 1,16);
+INSERT INTO comentario (id_comentario, contenido, calificacion, fecha, user_id, producto_id) VALUES (17,'Mis hijos lo aman.', 5, '2023-08-12', 2,17);
+INSERT INTO comentario (id_comentario, contenido, calificacion, fecha, user_id, producto_id) VALUES (18,'Me encanta el diseño.', 5, '2023-08-13', 3,18);
+INSERT INTO comentario (id_comentario, contenido, calificacion, fecha, user_id, producto_id) VALUES (19,'Fresca y económica.', 5, '2023-08-14', 2,19);
+INSERT INTO comentario (id_comentario, contenido, calificacion, fecha, user_id, producto_id) VALUES (20,'Fácil de usar.', 5, '2023-08-15', 1,20);
+INSERT INTO comentario (id_comentario, contenido, calificacion, fecha, user_id, producto_id) VALUES (21,'Muy buena laptop.', 5, '2023-08-16', 2,1);
+INSERT INTO comentario (id_comentario, contenido, calificacion, fecha, user_id, producto_id) VALUES (22,'Muy elegante.', 5, '2023-08-17', 1,2);
+INSERT INTO comentario (id_comentario, contenido, calificacion, fecha, user_id, producto_id) VALUES (23,'Funciona perfecto.', 4, '2023-08-18', 3,4);
+INSERT INTO comentario (id_comentario, contenido, calificacion, fecha, user_id, producto_id) VALUES (24,'Es muy suave.', 4, '2023-08-19', 2,5);
+INSERT INTO comentario (id_comentario, contenido, calificacion, fecha, user_id, producto_id) VALUES (25,'Rápido y confiable.', 5, '2023-08-20', 1,8);
+

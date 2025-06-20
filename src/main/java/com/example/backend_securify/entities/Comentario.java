@@ -19,6 +19,7 @@ public class Comentario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_comentario")
     private Long id_comentatio;
 
     @Column(nullable = false)
@@ -32,5 +33,7 @@ public class Comentario {
     @JoinColumn(name = "user_id")
     private User user;
 
-
+    @ManyToOne
+    @JoinColumn(name = "producto_id")
+    private Producto producto;
 }
