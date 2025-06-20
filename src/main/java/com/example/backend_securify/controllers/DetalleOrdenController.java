@@ -21,8 +21,8 @@ public class DetalleOrdenController {
     private IDetalleOrdenService detalleOrdenService;
 
     @PostMapping("/insertardetalleorden")
-    public ResponseEntity<DetalleOrden> insertarDetalleOrden(@ResponseBody DetalleOrden detalleOrden) {
-        DetalleOrden detalleOrd = detalleOrdenService.insertarDetalleOrden(detalleOrden);
+    public ResponseEntity<DetalleOrden> insertarDetalleOrden(@RequestBody DetalleOrden detalleorden) {
+        DetalleOrden detalleOrd = detalleOrdenService.insertarDetalleOrden(detalleorden);
         return new ResponseEntity<>(detalleOrd , HttpStatus.OK);
     }
 
