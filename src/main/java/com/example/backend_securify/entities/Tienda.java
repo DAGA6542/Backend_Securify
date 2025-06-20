@@ -15,6 +15,7 @@ import lombok.Setter;
 public class Tienda {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_tienda")
     private Long id_tienda;
     @Column(nullable = false)
     private String nombre;

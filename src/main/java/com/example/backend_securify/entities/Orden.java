@@ -19,6 +19,7 @@ public class Orden
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_orden")
     private Long id;
     private LocalDate fecha;
     private String estado;

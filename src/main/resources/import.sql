@@ -1,0 +1,110 @@
+INSERT INTO roles (name) VALUES ('ROLE_USER');
+INSERT INTO roles (name) VALUES ('ROLE_ADMIN');
+INSERT INTO roles (name) VALUES ('ROLE_SELLER');
+INSERT INTO users(apellido,email,nombre,username, password) VALUES ('Barta','juanbarta@gmail.com','Juan','user','$2a$12$BT9EFo4VjoejdbiIRpryuO3jjMcNCF/CP9wJZpPJtnwS1blfQ4qO.');
+INSERT INTO users(apellido,email,nombre,username, password) VALUES ('Marrufo','mariamarrufo@gmail.com','Maria','admin','$2a$12$WvqTKxUfJjWzljs88LTB8eeqfh7HvlLLRe44fHN4F/FUfO7lSkTcG');
+INSERT INTO users(apellido,email,nombre,username, password) VALUES ('Peralta','pabloperalta@gmail.com','Pablo','seller','$2a$12$neNvji5/CVf1Qyost11QAOsTrwZoGTfVz0ziPkws7fwXZXSceyhCK');
+INSERT INTO user_roles (user_id, role_id) VALUES (1, 1); -- user with ROLE_USER
+INSERT INTO user_roles (user_id, role_id) VALUES (2, 2); -- admin with ROLE_ADMIN
+INSERT INTO user_roles (user_id, role_id) VALUES (2, 3); -- seller with ROLE_SELLER
+
+INSERT INTO categorias (id_categoria, descripcion, nombre) VALUES (1, 'Productos infantiles y de entretenimiento','Juguetes');
+INSERT INTO categorias (id_categoria, descripcion, nombre) VALUES (2, 'Alimentos y comestibles variados','Comida');
+INSERT INTO categorias (id_categoria, descripcion, nombre) VALUES (3, 'Artículos de limpieza y aseo','Limpieza');
+INSERT INTO categorias (id_categoria, descripcion, nombre) VALUES (4, 'Indumentaria para deporte y ejercicio','Ropa Deportiva');
+INSERT INTO categorias (id_categoria, descripcion, nombre) VALUES (5, 'Prendas elegantes para ocasiones formales','Ropa Formal');
+INSERT INTO categorias (id_categoria, descripcion, nombre) VALUES (6, 'Productos farmacéuticos y de salud','Medicina');
+INSERT INTO categorias (id_categoria, descripcion, nombre) VALUES (7, 'Aparatos eléctricos para el hogar','Electrodomésticos');
+INSERT INTO categorias (id_categoria, descripcion, nombre) VALUES (8, 'Computadoras, accesorios y tecnología','Informática');
+INSERT INTO categorias (id_categoria, descripcion, nombre) VALUES (9, 'Zapatos, zapatillas y sandalias','Calzado');
+INSERT INTO categorias (id_categoria, descripcion, nombre) VALUES (10,'Alcoholes, cervezas y licores','Bebidas Alcohólicas');
+
+INSERT INTO tienda (id_tienda, nombre, descripcion, user_id) VALUES (1, 'Las Flores',     'Tienda de comestibles y alimentos',     2);
+INSERT INTO tienda (id_tienda, nombre, descripcion, user_id) VALUES (2, 'Phantom',        'Tienda de electrodomésticos',           3);
+INSERT INTO tienda (id_tienda, nombre, descripcion, user_id) VALUES (3, 'El Rey',         'Productos de limpieza variados',        3);
+INSERT INTO tienda (id_tienda, nombre, descripcion, user_id) VALUES (4, 'Pilsen Callao',  'Tienda de bebidas alcohólicas',         3);
+INSERT INTO tienda (id_tienda, nombre, descripcion, user_id) VALUES (5, 'Puma',           'Calzado deportivo y urbano',            3);
+INSERT INTO tienda (id_tienda, nombre, descripcion, user_id) VALUES (6, 'Hot Wheels',     'Tienda de juguetes y juegos',           1);
+INSERT INTO tienda (id_tienda, nombre, descripcion, user_id) VALUES (7, 'Adidas',         'Ropa deportiva y complementos',         1);
+INSERT INTO tienda (id_tienda, nombre, descripcion, user_id) VALUES (8, 'Armani',         'Ropa formal masculina y femenina',      2);
+INSERT INTO tienda (id_tienda, nombre, descripcion, user_id) VALUES (9, 'Lenovo',         'Hardware y soluciones informáticas',    3);
+INSERT INTO tienda (id_tienda, nombre, descripcion, user_id) VALUES (10,'Inkafarma',      'Productos médicos y de salud',          2);
+
+INSERT INTO productos (id_producto, nombre, descripcion, precio, stock, id_tienda, id_categoria) VALUES (1, 'Laptop IdeaPad 5','Portátil Lenovo 14"',3500, 12, 9,  8);
+INSERT INTO productos (id_producto, nombre, descripcion, precio, stock, id_tienda, id_categoria) VALUES (2, 'Camisa Formal Armani','Camisa de vestir elegante',253.45, 27, 8, 5);
+INSERT INTO productos (id_producto, nombre, descripcion, precio, stock, id_tienda, id_categoria) VALUES (3, 'Kit Limpieza Hogar','Completo set de limpieza',387.79, 11, 3, 3);
+INSERT INTO productos (id_producto, nombre, descripcion, precio, stock, id_tienda, id_categoria) VALUES (4, 'Auriculares Phantom','Auriculares inalámbricos',430.96, 21, 2, 7);
+INSERT INTO productos (id_producto, nombre, descripcion, precio, stock, id_tienda, id_categoria) VALUES (5, 'Sandalias Puma','Sandalias cómodas verano',40.62,  36, 5, 9);
+INSERT INTO productos (id_producto, nombre, descripcion, precio, stock, id_tienda, id_categoria) VALUES (6, 'Juego Hot Wheels Pack','Pack de coches de juguete',200.42, 13, 6, 1);
+INSERT INTO productos (id_producto, nombre, descripcion, precio, stock, id_tienda, id_categoria) VALUES (7, 'Camiseta Adidas','Remera deportiva ligera',206.50, 6,  7, 4);
+INSERT INTO productos (id_producto, nombre, descripcion, precio, stock, id_tienda, id_categoria) VALUES (8, 'Memoria USB Lenovo 64GB','Pendrive USB 3.0',473.99, 26, 9, 8);
+INSERT INTO productos (id_producto, nombre, descripcion, precio, stock, id_tienda, id_categoria) VALUES (9, 'Cerveza Callao 6 pack','Pack de cervezas artesanales',151.25, 49, 4,10);
+INSERT INTO productos (id_producto, nombre, descripcion, precio, stock, id_tienda, id_categoria) VALUES (10,'Ibuprofeno Inkafarma','Analgésico 20 comprimidos',171.95, 22,10, 6);
+INSERT INTO productos (id_producto, nombre, descripcion, precio, stock, id_tienda, id_categoria) VALUES (11,'Balón Adidas Fútbol','Balón oficial de fútbol Adidas',139.99, 20, 7, 4);
+INSERT INTO productos (id_producto, nombre, descripcion, precio, stock, id_tienda, id_categoria) VALUES (12,'Perfume Armani Code','Fragancia elegante para hombre',420.50, 15, 8, 5);
+INSERT INTO productos (id_producto, nombre, descripcion, precio, stock, id_tienda, id_categoria) VALUES (13,'Tablet Lenovo Tab M10','Tablet 10 pulgadas Android',899.00, 10, 9, 8);
+INSERT INTO productos (id_producto, nombre, descripcion, precio, stock, id_tienda, id_categoria) VALUES (14,'Detergente Ariel 5L','Detergente líquido para ropa',58.75,  30, 3, 3);
+INSERT INTO productos (id_producto, nombre, descripcion, precio, stock, id_tienda, id_categoria) VALUES (15,'Whisky Johnnie Walker','Botella de whisky etiqueta negra',315.00, 18, 4,10);
+INSERT INTO productos (id_producto, nombre, descripcion, precio, stock, id_tienda, id_categoria) VALUES (16,'Pastillas Paracetamol','Caja con 20 tabletas 500mg',25.00,  40,10, 6);
+INSERT INTO productos (id_producto, nombre, descripcion, precio, stock, id_tienda, id_categoria) VALUES (17,'Auto Hot Wheels Monster','Coche edición Monster',75.00,  25, 6, 1);
+INSERT INTO productos (id_producto, nombre, descripcion, precio, stock, id_tienda, id_categoria) VALUES (18,'Sneakers Puma RS-X','Zapatillas deportivas RS-X',299.99, 22, 5, 9);
+INSERT INTO productos (id_producto, nombre, descripcion, precio, stock, id_tienda, id_categoria) VALUES (19,'Leche Gloria 1L','Leche entera en caja 1L',7.50,   100,1, 2);
+INSERT INTO productos (id_producto, nombre, descripcion, precio, stock, id_tienda, id_categoria) VALUES (20,'Microondas LG 20L','Microondas con grill',599.00, 8,  2, 7);
+
+INSERT INTO orden (id_orden, fecha, estado, user_id) VALUES (1, '2023-04-07', 'entregado', 2);
+INSERT INTO orden (id_orden, fecha, estado, user_id) VALUES (2, '2023-03-28', 'pendiente', 3);
+INSERT INTO orden (id_orden, fecha, estado, user_id) VALUES (3, '2023-08-08', 'entregado', 3);
+INSERT INTO orden (id_orden, fecha, estado, user_id) VALUES (4, '2023-03-07', 'pendiente', 1);
+INSERT INTO orden (id_orden, fecha, estado, user_id) VALUES (5, '2023-01-12', 'entregado', 3);
+INSERT INTO orden (id_orden, fecha, estado, user_id) VALUES (6, '2023-11-26', 'entregado', 1);
+INSERT INTO orden (id_orden, fecha, estado, user_id) VALUES (7, '2023-01-15', 'enviado',   2);
+INSERT INTO orden (id_orden, fecha, estado, user_id) VALUES (8, '2023-06-03', 'pendiente', 1);
+INSERT INTO orden (id_orden, fecha, estado, user_id) VALUES (9, '2023-10-20', 'entregado', 2);
+INSERT INTO orden (id_orden, fecha, estado, user_id) VALUES (10,'2023-09-12', 'enviado',   3);
+INSERT INTO orden (id_orden, fecha, estado, user_id) VALUES (11,'2023-05-08', 'entregado', 2);
+INSERT INTO orden (id_orden, fecha, estado, user_id) VALUES (12,'2023-11-03', 'pendiente', 1);
+INSERT INTO orden (id_orden, fecha, estado, user_id) VALUES (13,'2023-01-21', 'pendiente', 2);
+INSERT INTO orden (id_orden, fecha, estado, user_id) VALUES (14,'2023-12-10', 'pendiente', 1);
+INSERT INTO orden (id_orden, fecha, estado, user_id) VALUES (15,'2023-09-17', 'entregado', 2);
+
+INSERT INTO pago (id_pago, metodo, monto, fecha, id_orden) VALUES (1, 'tarjeta',       339.28, '2023-04-06', 1);
+INSERT INTO pago (id_pago, metodo, monto, fecha, id_orden) VALUES (2, 'transferencia', 78.75,  '2023-03-27', 2);
+INSERT INTO pago (id_pago, metodo, monto, fecha, id_orden) VALUES (3, 'paypal',        65.58,  '2023-08-09', 3);
+INSERT INTO pago (id_pago, metodo, monto, fecha, id_orden) VALUES (4, 'paypal',        367.27, '2023-03-06', 4);
+INSERT INTO pago (id_pago, metodo, monto, fecha, id_orden) VALUES (5, 'transferencia', 274.67, '2023-01-13', 5);
+INSERT INTO pago (id_pago, metodo, monto, fecha, id_orden) VALUES (6, 'tarjeta',       205.77, '2023-11-27', 6);
+INSERT INTO pago (id_pago, metodo, monto, fecha, id_orden) VALUES (7, 'transferencia', 575.67, '2023-01-16', 7);
+INSERT INTO pago (id_pago, metodo, monto, fecha, id_orden) VALUES (8, 'paypal',        333.59, '2023-06-04', 8);
+INSERT INTO pago (id_pago, metodo, monto, fecha, id_orden) VALUES (9, 'transferencia', 631.42, '2023-10-21', 9);
+INSERT INTO pago (id_pago, metodo, monto, fecha, id_orden) VALUES (10,'paypal',        778.90, '2023-09-13', 10);
+INSERT INTO pago (id_pago, metodo, monto, fecha, id_orden) VALUES (11,'transferencia', 206.50, '2023-05-09', 11);
+INSERT INTO pago (id_pago, metodo, monto, fecha, id_orden) VALUES (12,'transferencia', 260.47, '2023-11-04', 12);
+INSERT INTO pago (id_pago, metodo, monto, fecha, id_orden) VALUES (13,'tarjeta',       895.87, '2023-01-22', 13);
+INSERT INTO pago (id_pago, metodo, monto, fecha, id_orden) VALUES (14,'transferencia', 609.52, '2023-12-11', 14);
+INSERT INTO pago (id_pago, metodo, monto, fecha, id_orden) VALUES (15,'paypal',        447.98, '2023-09-18', 15);
+
+INSERT INTO detalle_orden (id, cantidad, producto_id, orden_id) VALUES (1,  2, 1, 1),
+INSERT INTO detalle_orden (id, cantidad, producto_id, orden_id) VALUES (2,  1, 2, 2),
+INSERT INTO detalle_orden (id, cantidad, producto_id, orden_id) VALUES (3,  3, 3, 3),
+INSERT INTO detalle_orden (id, cantidad, producto_id, orden_id) VALUES (4,  2, 4, 4),
+INSERT INTO detalle_orden (id, cantidad, producto_id, orden_id) VALUES (5,  5, 5, 5),
+INSERT INTO detalle_orden (id, cantidad, producto_id, orden_id) VALUES (6,  2, 6, 6),
+INSERT INTO detalle_orden (id, cantidad, producto_id, orden_id) VALUES (7,  1, 7, 7),
+INSERT INTO detalle_orden (id, cantidad, producto_id, orden_id) VALUES (8,  2, 8, 8),
+INSERT INTO detalle_orden (id, cantidad, producto_id, orden_id) VALUES (9,  4, 9, 9),
+INSERT INTO detalle_orden (id, cantidad, producto_id, orden_id) VALUES (10, 1, 10, 10),
+INSERT INTO detalle_orden (id, cantidad, producto_id, orden_id) VALUES (11, 1, 11, 11),
+INSERT INTO detalle_orden (id, cantidad, producto_id, orden_id) VALUES (12, 1, 12, 12),
+INSERT INTO detalle_orden (id, cantidad, producto_id, orden_id) VALUES (13, 1, 13, 13),
+INSERT INTO detalle_orden (id, cantidad, producto_id, orden_id) VALUES (14, 2, 14, 14),
+INSERT INTO detalle_orden (id, cantidad, producto_id, orden_id) VALUES (15, 3, 15, 15),
+INSERT INTO detalle_orden (id, cantidad, producto_id, orden_id) VALUES (16, 2, 16, 3),
+INSERT INTO detalle_orden (id, cantidad, producto_id, orden_id) VALUES (17, 3, 17, 5),
+INSERT INTO detalle_orden (id, cantidad, producto_id, orden_id) VALUES (18, 1, 18, 6),
+INSERT INTO detalle_orden (id, cantidad, producto_id, orden_id) VALUES (19, 5, 19, 8),
+INSERT INTO detalle_orden (id, cantidad, producto_id, orden_id) VALUES (20, 1, 20, 9),
+INSERT INTO detalle_orden (id, cantidad, producto_id, orden_id) VALUES (21, 1, 1, 10),
+INSERT INTO detalle_orden (id, cantidad, producto_id, orden_id) VALUES (22, 2, 2, 11),
+INSERT INTO detalle_orden (id, cantidad, producto_id, orden_id) VALUES (23, 1, 3, 12),
+INSERT INTO detalle_orden (id, cantidad, producto_id, orden_id) VALUES (24, 1, 4, 13),
+INSERT INTO detalle_orden (id, cantidad, producto_id, orden_id) VALUES (25, 2, 5, 14);

@@ -2,6 +2,7 @@ package com.example.backend_securify.dtos;
 
 
 import com.example.backend_securify.entities.Categoria;
+import com.example.backend_securify.entities.Tienda;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,4 +20,5 @@ public class ProductoDTO {
     float precio;
     int stock;
     Categoria id_categoria;
+    Tienda id_tienda;
 }
