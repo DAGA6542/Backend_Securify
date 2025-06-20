@@ -2,6 +2,7 @@ package com.example.backend_securify.controllers;
 
 
 import com.example.backend_securify.dtos.CategoriaDTO;
+import com.example.backend_securify.entities.Categoria;
 import com.example.backend_securify.interfaces.ICategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -38,5 +39,28 @@ public class CategoriaController {
     public ResponseEntity<Void> eliminarCategoria(@RequestParam Long idCategoria) {
         categoriaService.eliminarCategoria(idCategoria);
         return ResponseEntity.noContent().build();
+    }
+
+    //Adaptaciones
+
+    @PutMapping("/editcategoria")
+    public ResponseEntity<CategoriaDTO> editarProveedor(@RequestBody CategoriaDTO categoria){
+        return ResponseEntity.ok(categoriaService.editar(categoria));
+    }
+
+    @PostMapping("/insertcategoria")
+    public ResponseEntity<CategoriaDTO> registrarProveedor(@RequestBody CategoriaDTO categoria) throws Exception {
+
+        return ResponseEntity.ok(categoriaService.insertar(categoria));
+    }
+
+    @GetMapping("/buscacategoria/{id}")
+    public Categoria buscarPorId(@PathVariable Long id){
+        return categoriaService.buscarPorId(id);
+    }
+
+    @DeleteMapping("/deletecat/{id}")
+    public void eliminar(@PathVariable Long id){
+        categoriaService.eliminar(id);
     }
 }

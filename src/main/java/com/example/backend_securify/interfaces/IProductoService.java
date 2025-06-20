@@ -13,4 +13,10 @@ public interface IProductoService {
     void eliminarProducto(Long idProducto);
     List<Producto> listarProductosPorCategoria(String nombreCategoria);
     List<Producto> listarProductosPorPrecioMayorMenor();
+
+    //Adaptaciones
+    public ProductoDTO editar(ProductoDTO producto);
+    ProductoDTO insertar(ProductoDTO producto);
+    Producto buscarPorId(Long id);
+    public void eliminar(Long id);
 }

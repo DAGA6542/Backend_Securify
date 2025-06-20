@@ -62,4 +62,39 @@ public class ProductoService implements IProductoService {
         return productoRepository.listarProductosPorPrecioMayorMenor();
     }
 
+    //Adaptaciones
+    @Override
+    public ProductoDTO editar(ProductoDTO producto) {
+        if(productoRepository.findById(producto.getIdProducto()).isPresent()){
+            Producto proveedorEntidad = modelMapper.map(producto, Producto.class);
+            Producto guardado = productoRepository.save(proveedorEntidad);
+            return modelMapper.map(guardado, ProductoDTO.class);
+        }
+        return null;
+    }
+
+
+    @Override
+    public ProductoDTO insertar(ProductoDTO producto) {
+        //Convertir el DTO en Entidad
+        Producto proveedorEntidad = modelMapper.map(producto, Producto.class);
+        Producto guardado = productoRepository.save(proveedorEntidad);
+        return modelMapper.map(guardado, ProductoDTO.class);
+    }
+
+    @Override
+    public Producto buscarPorId(Long id) {
+        if(productoRepository.findById(id).isPresent()){
+            return productoRepository.findById(id).get();
+        }
+        return null;
+    }
+
+    @Override
+    public void eliminar(Long id) {
+        if(productoRepository.existsById(id)){
+            productoRepository.deleteById(id);
+        }
+    }
+
 }

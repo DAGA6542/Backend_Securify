@@ -52,4 +52,39 @@ public class CategoriaService implements ICategoriaService {
             categoriaRepository.deleteById(idCategoria);
         }
     }
+
+    //Adaptaciones
+    @Override
+    public CategoriaDTO editar(CategoriaDTO proveedor) {
+        if(categoriaRepository.findById(proveedor.getIdCategoria()).isPresent()){
+            Categoria proveedorEntidad = modelMapper.map(proveedor, Categoria.class);
+            Categoria guardado = categoriaRepository.save(proveedorEntidad);
+            return modelMapper.map(guardado, CategoriaDTO.class);
+        }
+        return null;
+    }
+
+
+    @Override
+    public CategoriaDTO insertar(CategoriaDTO categoria) {
+        //Convertir el DTO en Entidad
+        Categoria proveedorEntidad = modelMapper.map(categoria, Categoria.class);
+        Categoria guardado = categoriaRepository.save(proveedorEntidad);
+        return modelMapper.map(guardado, CategoriaDTO.class);
+    }
+
+    @Override
+    public Categoria buscarPorId(Long id) {
+        if(categoriaRepository.findById(id).isPresent()){
+            return categoriaRepository.findById(id).get();
+        }
+        return null;
+    }
+
+    @Override
+    public void eliminar(Long id) {
+        if(categoriaRepository.existsById(id)){
+            categoriaRepository.deleteById(id);
+        }
+    }
 }

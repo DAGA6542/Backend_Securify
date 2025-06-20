@@ -57,4 +57,27 @@ public class ProductoController {
 
         return ResponseEntity.ok(productos);
     }
+
+    //Adaptaciones
+
+    @PutMapping("/editproducto")
+    public ResponseEntity<ProductoDTO> editarProducto(@RequestBody ProductoDTO producto){
+        return ResponseEntity.ok(productoService.editar(producto));
+    }
+
+    @PostMapping("/insertproducto")
+    public ResponseEntity<ProductoDTO> registrarProducto(@RequestBody ProductoDTO producto) throws Exception {
+
+        return ResponseEntity.ok(productoService.insertar(producto));
+    }
+
+    @GetMapping("/buscaproducto/{id}")
+    public Producto buscarPorId(@PathVariable Long id){
+        return productoService.buscarPorId(id);
+    }
+
+    @DeleteMapping("/deleteproducto/{id}")
+    public void eliminar(@PathVariable Long id){
+        productoService.eliminar(id);
+    }
 }
