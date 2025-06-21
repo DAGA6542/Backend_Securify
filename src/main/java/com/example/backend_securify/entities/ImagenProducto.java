@@ -16,13 +16,13 @@ import lombok.Setter;
 public class ImagenProducto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_Imagen;
-
-    @Column(nullable = false)
+    @Column(name = "imagenproducto_id")
+    private Long imagenproducto_id;
+    @Column( name = "urlImagen", nullable = false)
     private String urlImagen;
 
     @ManyToOne
-    @JoinColumn(name = "id_producto")
-    private Producto producto;
+    @JoinColumn(name = "producto_id")
+    private Producto producto_id;
 
 }

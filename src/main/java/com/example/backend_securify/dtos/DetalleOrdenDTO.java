@@ -2,6 +2,7 @@ package com.example.backend_securify.dtos;
 
 import com.example.backend_securify.entities.Orden;
 import com.example.backend_securify.entities.Producto;
+import jakarta.persistence.*;
 import lombok.*;
 import java.io.Serializable;
 
@@ -10,8 +11,8 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DetalleOrdenDTO implements Serializable{
-    Long id_detalleorden;
+    Long detalleorden_id;
     int cantidad;
-    Producto id_producto;
-    Orden id_orden;
+    Producto producto_id;
+    Orden orden_id;
 }

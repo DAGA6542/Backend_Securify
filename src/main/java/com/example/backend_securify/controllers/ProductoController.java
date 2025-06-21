@@ -22,7 +22,7 @@ public class ProductoController {
     private IProductoService productoService;
 
     @PostMapping("/insertarproducto") //End Point
-    public ResponseEntity<Producto> insertarProducto(@RequestBody Producto producto) {
+        public ResponseEntity<Producto> insertarProducto(@RequestBody Producto producto) {
         Producto productoRe = productoService.insertarProducto(producto);
         return new ResponseEntity<>(productoRe, HttpStatus.OK);
     }
@@ -45,8 +45,8 @@ public class ProductoController {
     }
 
     @DeleteMapping("/eliminarproducto/{id}")
-    public ResponseEntity<Void> eliminarProducto(@RequestParam Long idProducto) {
-        productoService.eliminarProducto(idProducto);
+    public ResponseEntity<Void> eliminarProducto(@RequestParam Long producto_id) {
+        productoService.eliminarProducto(producto_id);
         return ResponseEntity.noContent().build();
     }
 

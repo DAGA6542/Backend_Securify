@@ -17,17 +17,21 @@ public class Producto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_producto")
-    private Long idProducto;
-
+    @Column(name = "producto_id")
+    private Long producto_id;
+    @Column(name = "nombre")
     private String nombre;
+    @Column(name = "descripcion")
     private String descripcion;
+    @Column(name = "precio")
     private float precio;
+    @Column(name = "stock")
     private int stock;
+
     @ManyToOne
-    @JoinColumn(name = "id_categoria")
-    private Categoria id_categoria;
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria_id;
     @ManyToOne
-    @JoinColumn(name = "id_tienda")
-    private Tienda id_tienda;
+    @JoinColumn(name = "tienda_id")
+    private Tienda tienda_id;
 }

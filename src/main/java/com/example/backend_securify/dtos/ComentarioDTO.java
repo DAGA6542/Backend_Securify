@@ -16,10 +16,10 @@ import java.time.LocalDate;
 @AllArgsConstructor
 
 public class ComentarioDTO implements Serializable {
-    Long id_comentario;
+    Long comentario_id;
     String contenido;
     int calificacion;
     LocalDate fecha;
-    User user;
-    Producto producto;
+    User user_id;
+    Producto producto_id;
 }

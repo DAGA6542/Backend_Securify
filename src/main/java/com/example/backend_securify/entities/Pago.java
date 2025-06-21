@@ -18,12 +18,16 @@ public class Pago
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_pago")
-    private Long id;
+    @Column(name = "pago_id")
+    private Long pago_id;
+    @Column(name = "metodo")
     private String metodo;
+    @Column(name = "monto")
     private double monto;
+    @Column(name = "fecha")
     private LocalDate fecha;
+
     @ManyToOne
-    @JoinColumn(name = "id_orden")
-    private Orden orden;
+    @JoinColumn(name = "orden_id")
+    private Orden orden_id;
 }

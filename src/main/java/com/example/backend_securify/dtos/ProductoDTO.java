@@ -3,6 +3,9 @@ package com.example.backend_securify.dtos;
 
 import com.example.backend_securify.entities.Categoria;
 import com.example.backend_securify.entities.Tienda;
+import jakarta.persistence.Column;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,11 +17,11 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ProductoDTO {
 
-    long idProducto;
+    long producto_id;
     String nombre;
     String descripcion;
     float precio;
     int stock;
-    Categoria id_categoria;
-    Tienda id_tienda;
+    Categoria categoria_id;
+    Tienda tienda_id;
 }

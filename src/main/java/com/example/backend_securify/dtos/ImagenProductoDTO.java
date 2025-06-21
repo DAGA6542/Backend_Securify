@@ -12,8 +12,8 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ImagenProductoDto implements Serializable {
-    Long id_Imagen;
+public class ImagenProductoDTO implements Serializable {
+    Long imagenproducto_id;
     String urlImagen;
-    Producto producto;
+    Producto producto_id;
 }

@@ -29,7 +29,7 @@ public class ProductoService implements IProductoService {
     @Transactional
     @Override
     public Producto modificarProducto(Producto producto) {
-        if(productoRepository.findById(producto.getIdProducto()).isPresent()){
+        if(productoRepository.findById(producto.getProducto_id()).isPresent()){
             return productoRepository.save(producto);
         }
         return null;
@@ -56,5 +56,4 @@ public class ProductoService implements IProductoService {
     public List<Producto> listarProductosPorPrecioMayorMenor() {
         return productoRepository.listarProductosPorPrecioMayorMenor();
     }
-
 }

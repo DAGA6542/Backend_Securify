@@ -18,14 +18,15 @@ import java.time.LocalDate;
 public class DetalleOrden {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_detalleorden")
-    private Long id_detalleorden;
-    @Column(nullable = false)
+    @Column(name = "detalleorden_id")
+    private Long detalleorden_id;
+    @Column(name = "cantidad", nullable = false)
     private int cantidad;
+
     @ManyToOne
-    @JoinColumn(name = "id_producto")
-    private Producto producto;
+    @JoinColumn(name = "producto_id")
+    private Producto producto_id;
     @ManyToOne
-    @JoinColumn(name = "id_orden")
-    private Orden orden;
+    @JoinColumn(name = "orden_id")
+    private Orden orden_id;
 }

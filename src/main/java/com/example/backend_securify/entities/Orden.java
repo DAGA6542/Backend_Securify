@@ -19,11 +19,14 @@ public class Orden
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_orden")
-    private Long id;
+    @Column(name = "orden_id")
+    private Long orden_id;
+    @Column(name = "fecha")
     private LocalDate fecha;
+    @Column(name = "estado")
     private String estado;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private User user_id;
 }

@@ -19,21 +19,19 @@ public class Comentario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_comentario")
-    private Long id_comentatio;
-
-    @Column(nullable = false)
+    @Column(name = "comentario_id")
+    private Long comentario_id;
+    @Column(name = "contenido", nullable = false)
     private String contenido;
-
+    @Column(name = "calificacion")
     private int calificacion;
-
+    @Column(name = "fecha")
     private LocalDate fecha;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
-
+    private User user_id;
     @ManyToOne
     @JoinColumn(name = "producto_id")
-    private Producto producto;
+    private Producto producto_id;
 }

@@ -1,6 +1,7 @@
 package com.example.backend_securify.dtos;
 
 import com.example.backend_securify.entities.Orden;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,9 +16,8 @@ import java.time.LocalDate;
 @AllArgsConstructor
 
 public class PagoDTO implements Serializable {
-    Long id;
+    Long pago_id;
     String metodo;
     double monto;
     LocalDate fecha;
-    Orden orden;
 }

@@ -15,16 +15,16 @@ import lombok.Setter;
 public class Tienda {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_tienda")
-    private Long id_tienda;
-    @Column(nullable = false)
+    @Column(name = "tienda_id")
+    private Long tienda_id;
+    @Column(name = "nombre", nullable = false)
     private String nombre;
-    @Column(nullable = false)
+    @Column(name = "descripcion", nullable = false)
     private String descripcion;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private User user_id;
 
 }
 
