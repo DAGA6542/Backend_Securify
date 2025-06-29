@@ -15,12 +15,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/comentarios")
+@RequestMapping("/comentario")
 public class ComentarioController {
     @Autowired
     private IComentarioService comentarioService;
 
-    @PostMapping("/insertarcomentarios") //End Point
+    @PostMapping("/insertarcomentario") //End Point
     public ResponseEntity<Comentario> insertarComentario(@RequestBody Comentario comentario) {
         Comentario comentarioRe = comentarioService.insertarComentario(comentario);
         return new ResponseEntity<>(comentarioRe, HttpStatus.OK);

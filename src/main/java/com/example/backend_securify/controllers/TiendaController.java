@@ -16,12 +16,12 @@ import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true", exposedHeaders = "Authorization") //para cloud
-@RequestMapping("/tiendas")
+@RequestMapping("/tienda")
 public class TiendaController {
     @Autowired
     private ITiendaService tiendaService;
 
-    @PostMapping("/insertatienda") //End Point
+    @PostMapping("/insertartienda") //End Point
     public ResponseEntity<Tienda> insertarTienda(@RequestBody Tienda tienda) {
         Tienda tiendaRe = tiendaService.insertarTienda(tienda);
         return new ResponseEntity<>(tiendaRe, HttpStatus.OK);

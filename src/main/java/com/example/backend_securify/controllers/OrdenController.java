@@ -21,7 +21,7 @@ public class OrdenController {
     @Autowired
     private IOrdenService ordenService;
 
-    @PostMapping("/insertaorden") //End Point
+    @PostMapping("/insertarorden") //End Point
     public ResponseEntity<Orden> insertarOrden(@RequestBody Orden orden) {
         Orden ordenRe = ordenService.insertarOrden(orden);
         return new ResponseEntity<>(ordenRe, HttpStatus.OK);

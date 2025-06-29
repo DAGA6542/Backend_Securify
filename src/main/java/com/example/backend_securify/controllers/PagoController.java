@@ -22,7 +22,7 @@ public class PagoController {
     @Autowired
     private IPagoService pagoService;
 
-    @PostMapping("/insertapago") //End Point
+    @PostMapping("/insertarpago") //End Point
     public ResponseEntity<Pago> insertarPago(@RequestBody Pago pago) {
         Pago pagoRe = pagoService.insertarPago(pago);
         return new ResponseEntity<>(pagoRe, HttpStatus.OK);

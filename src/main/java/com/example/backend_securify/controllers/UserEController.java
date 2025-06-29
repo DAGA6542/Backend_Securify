@@ -22,7 +22,7 @@ public class UserEController {
     @Autowired
     private UserEService userService;
 
-    @PostMapping("/insertauser") //End Point
+    @PostMapping("/insertaruser") //End Point
     public ResponseEntity<User> insertarUser(@RequestBody User user) {
         User userRe = userService.insertarUser(user);
         return new ResponseEntity<>(userRe, HttpStatus.OK);
