@@ -21,8 +21,12 @@ public class ImagenProducto {
     @Column(nullable = false)
     private String urlImagen;
 
+    // Relación con producto
     @ManyToOne
     @JoinColumn(name = "id_producto")
     private Producto producto;
+
+
+
 
 }

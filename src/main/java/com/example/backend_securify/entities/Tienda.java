@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -20,10 +22,19 @@ public class Tienda {
     private String nombre;
     @Column(nullable = false)
     private String descripcion;
-
+    // Relación con el usuario propietario de la tienda
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    // Relación con productos: una tienda tiene muchos productos
+    @OneToMany(mappedBy = "tienda", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Producto> productos;
+
+    // Relación opcional con comentarios (si aplica que los usuarios comenten una tienda)
+    @OneToMany(mappedBy = "tienda", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comentario> comentarios;
+
 
 }
 

@@ -22,6 +22,8 @@ public class Pago
     private String metodo;
     private double monto;
     private LocalDate fecha;
+
+    // Relación con la orden asociada orelacionada
     @ManyToOne
     @JoinColumn(name = "orden_id")
     private Orden orden;

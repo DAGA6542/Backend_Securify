@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Getter
@@ -25,4 +26,8 @@ public class Orden
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    // Relación con los pagos asociados a la orden
+    @OneToMany(mappedBy = "orden", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Pago> pagos;
 }
