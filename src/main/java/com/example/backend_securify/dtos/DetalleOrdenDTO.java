@@ -2,21 +2,17 @@ package com.example.backend_securify.dtos;
 
 import com.example.backend_securify.entities.Orden;
 import com.example.backend_securify.entities.Producto;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
+import jakarta.persistence.*;
+import lombok.*;
 import java.io.Serializable;
-@Getter
+
 @Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class DetalleOrdenDTO implements Serializable {
-    private Long id;
-    private Orden orden;
-    private Producto producto;
-    private int cantidad;
-    private double precioUnitario;
-    private double subtotal;
+public class DetalleOrdenDTO implements Serializable{
+    Long detalleorden_id;
+    int cantidad;
+    Producto producto_id;
+    Orden orden_id;
 }

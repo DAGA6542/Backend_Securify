@@ -17,15 +17,16 @@ import java.util.List;
 public class Tienda {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_tienda;
-    @Column(nullable = false)
+    @Column(name = "tienda_id")
+    private Long tienda_id;
+    @Column(name = "nombre", nullable = false)
     private String nombre;
-    @Column(nullable = false)
+    @Column(name = "descripcion", nullable = false)
     private String descripcion;
     // Relación con el usuario propietario de la tienda
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private User user_id;
 
     // Relación con productos: una tienda tiene muchos productos
     @OneToMany(mappedBy = "tienda", cascade = CascadeType.ALL, orphanRemoval = true)

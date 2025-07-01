@@ -7,8 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @Setter
 @Getter
 @NoArgsConstructor
@@ -19,31 +17,21 @@ public class Producto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_producto")
-    private long idProducto;
-
+    @Column(name = "producto_id")
+    private Long producto_id;
+    @Column(name = "nombre")
     private String nombre;
+    @Column(name = "descripcion")
     private String descripcion;
+    @Column(name = "precio")
     private float precio;
+    @Column(name = "stock")
     private int stock;
+
     @ManyToOne
-    @JoinColumn(name = "id_categoria")
-    private Categoria id_categoria;
-
-    // Relación con tienda
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria_id;
     @ManyToOne
-    @JoinColumn(name = "id_Tienda", nullable = false)
-    private Tienda id_Tienda;
-
-    // Relación con imágenes del producto
-    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ImagenProducto> imagenes;
-
-    // Relación con comentarios sobre el producto
-    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Comentario> comentarios;
-
-    // Relación con orden (puede haber una lista intermedia en otra entidad llamada DetalleOrden)
-    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Orden> ordenes;
+    @JoinColumn(name = "tienda_id")
+    private Tienda tienda_id;
 }

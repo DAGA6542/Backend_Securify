@@ -1,5 +1,7 @@
 package com.example.backend_securify.dtos;
 
+import com.example.backend_securify.entities.Producto;
+import com.example.backend_securify.security.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,11 +16,10 @@ import java.time.LocalDate;
 @AllArgsConstructor
 
 public class ComentarioDTO implements Serializable {
-    Long id_comentario;
+    Long comentario_id;
     String contenido;
     int calificacion;
     LocalDate fecha;
-    Long usuarioId;
-    Long productoId;
-
+    User user_id;
+    Producto producto_id;
 }

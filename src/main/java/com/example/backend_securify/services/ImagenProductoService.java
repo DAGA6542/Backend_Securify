@@ -1,51 +1,52 @@
 package com.example.backend_securify.services;
 
-import com.example.backend_securify.dtos.ImagenProductoDto;
 import com.example.backend_securify.entities.ImagenProducto;
 import com.example.backend_securify.interfaces.IImagenProductoService;
 import com.example.backend_securify.repositories.IImagenProductoRepository;
-import org.modelmapper.ModelMapper;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ImagenProductoService implements IImagenProductoService {
 
     @Autowired
-    private IImagenProductoRepository IImagenProductoRepository;
-
-    @Autowired
-    private ModelMapper modelMapper;
+    private IImagenProductoRepository imagenProductoRepository;
 
     @Override
-    public List<ImagenProductoDto> listarImagenProducto() {
-        return IImagenProductoRepository.findAll()
-                .stream()
-                .map(c->modelMapper.map(c, ImagenProductoDto.class))
-                .collect(Collectors.toList());
+    public ImagenProducto insertarImagenProducto(ImagenProducto imagenProducto) {
+        return imagenProductoRepository.save(imagenProducto);
     }
 
+    @Transactional
     @Override
-    public ImagenProductoDto insertProducto(ImagenProductoDto imagenProductoDto) {
-        ImagenProducto imagenProducto = modelMapper.map(imagenProductoDto, ImagenProducto.class);
-        return modelMapper.map(IImagenProductoRepository.save(imagenProducto), ImagenProductoDto.class);
-    }
-
-    @Override
-    public ImagenProductoDto updateProducto(Long id_Imagen, ImagenProductoDto imagenProductoDto) {
-        ImagenProducto c = IImagenProductoRepository.findById((id_Imagen)).get();
-        modelMapper.map(imagenProductoDto, c);
-        ImagenProducto imagenProducto = IImagenProductoRepository.save(c);
-        return modelMapper.map(imagenProductoDto, ImagenProductoDto.class);
-    }
-
-    @Override
-    public void deleteProducto(Long id_Imagen) {
-        if (IImagenProductoRepository.existsById((id_Imagen))) {
-            IImagenProductoRepository.deleteById(id_Imagen);
+    public void eliminarImagenProducto(Long detalleorden_id) {
+        if (imagenProductoRepository.existsById(detalleorden_id)) {
+            imagenProductoRepository.deleteById(detalleorden_id);
         }
+    }
+
+    @Transactional
+    @Override
+    public ImagenProducto modificarImagenProducto(ImagenProducto imagenProducto) {
+        if(imagenProductoRepository.findById(imagenProducto.getImagenproducto_id()).isPresent()){
+            return imagenProductoRepository.save(imagenProducto);
+        }
+        return null;
+    }
+
+    @Override
+    public List<ImagenProducto> listarImagenProducto() {
+        return imagenProductoRepository.findAll();
+    }
+
+    @Override
+    public ImagenProducto buscarImagenProductoPorId(long imagenproducto_id) {
+        if(imagenProductoRepository.findById(imagenproducto_id).isPresent()){
+            return imagenProductoRepository.findById(imagenproducto_id).get();
+        }
+        return null;
     }
 }

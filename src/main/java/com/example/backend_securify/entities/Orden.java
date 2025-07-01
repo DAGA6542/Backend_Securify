@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 @Getter
@@ -20,14 +19,14 @@ public class Orden
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "orden_id")
+    private Long orden_id;
+    @Column(name = "fecha")
     private LocalDate fecha;
+    @Column(name = "estado")
     private String estado;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
-
-    // Relación con los pagos asociados a la orden
-    @OneToMany(mappedBy = "orden", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Pago> pagos;
+    private User user_id;
 }
