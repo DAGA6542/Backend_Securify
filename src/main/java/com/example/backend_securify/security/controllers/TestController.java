@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 //@CrossOrigin(origins = "${ip.frontend}")
 @CrossOrigin(origins = "${ip.frontend}", allowCredentials = "true", exposedHeaders = "Authorization") //para cloud
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/securify")
 public class TestController {
 
     @GetMapping("/admin")
@@ -23,4 +23,5 @@ public class TestController {
     public String userEndpoint() {
         return "This is the user endpoint, accessible to users with USER or ADMIN role.";
     }
+
 }
