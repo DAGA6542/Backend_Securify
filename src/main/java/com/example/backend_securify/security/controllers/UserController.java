@@ -14,7 +14,7 @@ import java.util.List;
 //@CrossOrigin(origins = "${ip.frontend}")
 @CrossOrigin(origins = "${ip.frontend}", allowCredentials = "true", exposedHeaders = "Authorization") //para cloud
 @RestController
-@RequestMapping("/usersecurity")
+@RequestMapping("/securify")
 public class UserController {
     @Autowired
     private UserService userService;
