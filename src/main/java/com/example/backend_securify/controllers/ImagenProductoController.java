@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true", exposedHeaders = "Authorization") //para cloud
-@RequestMapping("/imagenproducto")
+@RequestMapping("/imagenProducto")
 public class ImagenProductoController {
 
     @Autowired

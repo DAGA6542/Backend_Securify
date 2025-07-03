@@ -1,4 +1,4 @@
-INSERT INTO _idroles (name) VALUES ('ROLE_USER');
+INSERT INTO roles (name) VALUES ('ROLE_USER');
 INSERT INTO roles (name) VALUES ('ROLE_ADMIN');
 INSERT INTO roles (name) VALUES ('ROLE_SELLER');
 INSERT INTO users(apellido,email,nombre,username, password) VALUES ('Barta','juanbarta@gmail.com','Juan','user','$2a$12$BT9EFo4VjoejdbiIRpryuO3jjMcNCF/CP9wJZpPJtnwS1blfQ4qO.');

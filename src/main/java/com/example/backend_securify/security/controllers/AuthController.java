@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @CrossOrigin(origins = "${ip.frontend}", allowCredentials = "true", exposedHeaders = "Authorization") //para cloud
 //@CrossOrigin(origins = "*", allowedHeaders = "*", exposedHeaders = "Authorization")
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/securify")
 public class AuthController {
 
     private final AuthenticationManager authenticationManager;
