@@ -4,63 +4,49 @@ package com.example.backend_securify.controllers;
 import com.example.backend_securify.dtos.CategoriaDTO;
 import com.example.backend_securify.entities.Categoria;
 import com.example.backend_securify.interfaces.ICategoriaService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true", exposedHeaders = "Authorization") //para cloud
 @RequestMapping("/categoria")
 public class CategoriaController {
 
     @Autowired
     private ICategoriaService categoriaService;
 
-    @GetMapping("/listacategoria") //End Point
-    public List<CategoriaDTO> listarCategorias() {
-        return categoriaService.listarCategorias();
+    @PostMapping("/insertarcategoria") //End Point
+    public ResponseEntity<Categoria> insertarCategoria(@RequestBody Categoria categoria) {
+        Categoria categoriaRe = categoriaService.insertarCategoria(categoria);
+        return new ResponseEntity<>(categoriaRe, HttpStatus.OK);
     }
 
-    @PostMapping("/guardacategoria") //End Point
-    public CategoriaDTO grabarCategoria(@RequestBody CategoriaDTO categoria) {
-        return categoriaService.guardarCategoria(categoria);
+    @GetMapping("/listacategoria") //End Point
+    public List<CategoriaDTO> listarCategoria() {
+        List<Categoria> categorias = categoriaService.listarCategorias();
+        ModelMapper modelMapper = new ModelMapper();
+        return categorias.stream()
+                .map(categoria -> modelMapper.map(categoria, CategoriaDTO.class))
+                .collect(Collectors.toList());
     }
 
     @PutMapping("/actualizarcategoria/{id}")
-    public ResponseEntity<CategoriaDTO> actualizarCategoria( @PathVariable Long id, @RequestBody CategoriaDTO categoriaDto) {
-
-        CategoriaDTO categoriaActualizada = categoriaService.actualizarCategoria(id, categoriaDto);
-        return ResponseEntity.ok(categoriaActualizada);
-
+    public void actualizarCategoria(@RequestBody CategoriaDTO categoriadto) {
+        ModelMapper m = new ModelMapper();
+        Categoria categoria = m.map(categoriadto, Categoria.class);
+        categoriaService.modificarCategoria(categoria);
     }
 
     @DeleteMapping("/eliminarcategoria/{id}")
-    public ResponseEntity<Void> eliminarCategoria(@RequestParam Long idCategoria) {
-        categoriaService.eliminarCategoria(idCategoria);
+    public ResponseEntity<Void> eliminarCategoria(@RequestParam Long categoria_id) {
+        categoriaService.eliminarCategoria(categoria_id);
         return ResponseEntity.noContent().build();
     }
 
-    //Adaptaciones
-
-    @PutMapping("/editcategoria")
-    public ResponseEntity<CategoriaDTO> editarProveedor(@RequestBody CategoriaDTO categoria){
-        return ResponseEntity.ok(categoriaService.editar(categoria));
-    }
-
-    @PostMapping("/insertcategoria")
-    public ResponseEntity<CategoriaDTO> registrarProveedor(@RequestBody CategoriaDTO categoria) throws Exception {
-
-        return ResponseEntity.ok(categoriaService.insertar(categoria));
-    }
-
-    @GetMapping("/buscacategoria/{id}")
-    public Categoria buscarPorId(@PathVariable Long id){
-        return categoriaService.buscarPorId(id);
-    }
-
-    @DeleteMapping("/deletecat/{id}")
-    public void eliminar(@PathVariable Long id){
-        categoriaService.eliminar(id);
-    }
 }

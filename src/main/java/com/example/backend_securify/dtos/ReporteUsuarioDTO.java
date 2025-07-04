@@ -1,6 +1,5 @@
 package com.example.backend_securify.dtos;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,9 +9,10 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CategoriaDTO {
+public class ReporteUsuarioDTO {
 
-    long categoria_id;
     String nombre;
-    String descripcion;
+    String apellido;
+    String email;
+    String rol;
 }

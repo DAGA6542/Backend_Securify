@@ -1,8 +1,6 @@
 package com.example.backend_securify.dtos;
 
-
-import com.example.backend_securify.entities.Categoria;
-import com.example.backend_securify.entities.Tienda;
+import com.example.backend_securify.security.entities.User;
 import jakarta.persistence.Column;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -11,17 +9,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Setter
+import java.io.Serializable;
+
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductoDTO {
 
-    long producto_id;
+public class TiendaDTO implements Serializable {
+    Long tienda_id;
     String nombre;
     String descripcion;
-    float precio;
-    int stock;
-    Categoria categoria_id;
-    Tienda tienda_id;
+    User user_id;
 }

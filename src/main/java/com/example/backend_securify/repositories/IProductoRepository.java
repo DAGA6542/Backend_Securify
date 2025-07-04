@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface IProductoRepository extends JpaRepository<Producto, Long> {
 
-    @Query("SELECT p FROM Producto p WHERE p.id_categoria.nombre = :nombreCategoria")
+    @Query("SELECT p FROM Producto p WHERE p.categoria_id.nombre = :nombreCategoria")
     List<Producto> listarProductosPorCategoria(@Param("nombreCategoria") String nombreCategoria);
     @Query("SELECT p FROM Producto p ORDER BY p.precio DESC")
     List<Producto> listarProductosPorPrecioMayorMenor();
