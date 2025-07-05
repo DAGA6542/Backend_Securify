@@ -1,5 +1,7 @@
 package com.example.backend_securify.interfaces;
 
+import com.example.backend_securify.dtos.CategoriaDTO;
+import com.example.backend_securify.dtos.ProductoDTO;
 import com.example.backend_securify.entities.Producto;
 
 import java.util.List;
@@ -13,4 +15,9 @@ public interface IProductoService {
 
     public List<Producto> listarProductosPorCategoria(String nombreCategoria);
     public List<Producto> listarProductosPorPrecioMayorMenor();
+
+    //adap
+
+    ProductoDTO insertar(ProductoDTO producto);
+    public void eliminar(Long id);
 }

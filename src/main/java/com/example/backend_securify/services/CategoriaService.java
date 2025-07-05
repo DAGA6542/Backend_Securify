@@ -1,9 +1,11 @@
 package com.example.backend_securify.services;
 
+import com.example.backend_securify.dtos.CategoriaDTO;
 import com.example.backend_securify.entities.Categoria;
 import com.example.backend_securify.interfaces.ICategoriaService;
 import com.example.backend_securify.repositories.ICategoriaRepository;
 import jakarta.transaction.Transactional;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,8 @@ public class CategoriaService implements ICategoriaService {
 
     @Autowired //inyecta
     private ICategoriaRepository categoriaRepository;
+    @Autowired
+    private ModelMapper modelMapper;
 
     @Override
     public Categoria insertarCategoria(Categoria categoria) {
@@ -48,6 +52,22 @@ public class CategoriaService implements ICategoriaService {
             return categoriaRepository.findById(categoria_id).get();
         }
         return null;
+    }
+
+//adap
+    @Override
+    public CategoriaDTO insertar(CategoriaDTO categoria) {
+        //Convertir el DTO en Entidad
+        Categoria proveedorEntidad = modelMapper.map(categoria, Categoria.class);
+        Categoria guardado = categoriaRepository.save(proveedorEntidad);
+        return modelMapper.map(guardado, CategoriaDTO.class);
+    }
+
+    @Override
+    public void eliminar(Long id) {
+        if(categoriaRepository.existsById(id)){
+            categoriaRepository.deleteById(id);
+        }
     }
 }
 

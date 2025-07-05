@@ -1,5 +1,6 @@
 package com.example.backend_securify.interfaces;
 
+import com.example.backend_securify.dtos.CategoriaDTO;
 import com.example.backend_securify.dtos.TiendaDTO;
 import com.example.backend_securify.entities.Producto;
 import com.example.backend_securify.entities.Tienda;
@@ -14,4 +15,9 @@ public interface ITiendaService {
     public Tienda modificarTienda(Tienda tienda);
     public List<Tienda> listarTienda();
     public Tienda buscarTiendaPorId(long tienda_id);
+
+    //adap
+
+    TiendaDTO insertar(TiendaDTO tienda);
+    public void eliminar(Long id);
 }

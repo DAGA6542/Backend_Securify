@@ -1,7 +1,8 @@
 package com.example.backend_securify.controllers;
 
+import com.example.backend_securify.dtos.CategoriaDTO;
 import com.example.backend_securify.dtos.UserDTO;
-import com.example.backend_securify.security.entities.User;
+import com.example.backend_securify.entities.User;
 import com.example.backend_securify.services.UserEService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class UserEController {
         return new ResponseEntity<>(userRe, HttpStatus.OK);
     }
 
-    @GetMapping("/listauser") //End Point
+    @GetMapping("/listausers") //End Point
     public List<UserDTO> listarUser() {
         List<User> users = userService.listarUser();
         ModelMapper modelMapper = new ModelMapper();
@@ -37,7 +38,7 @@ public class UserEController {
                 .collect(Collectors.toList());
     }
 
-    @PutMapping("/actualizaruser/{id}")
+    @PutMapping("/actualizaruser")
     public void actualizarUser(@RequestBody UserDTO userdto) {
         ModelMapper m = new ModelMapper();
         User user = m.map(userdto, User.class);
@@ -48,5 +49,17 @@ public class UserEController {
     public ResponseEntity<Void> eliminarUser(@RequestParam Long user_id) {
         userService.eliminarUser(user_id);
         return ResponseEntity.noContent().build();
+    }
+
+    //Adap
+
+    @PostMapping("/postuser")
+    public ResponseEntity<UserDTO> registrarUser(@RequestBody UserDTO userdto) throws Exception {
+        return ResponseEntity.ok(userService.insertar(userdto));
+    }
+
+    @DeleteMapping("/deleteuser/{id}")
+    public void eliminar(@PathVariable Long id){
+        userService.eliminar(id);
     }
 }

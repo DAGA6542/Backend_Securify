@@ -1,5 +1,6 @@
 package com.example.backend_securify.interfaces;
 
+import com.example.backend_securify.dtos.CategoriaDTO;
 import com.example.backend_securify.dtos.OrdenDTO;
 import com.example.backend_securify.entities.DetalleOrden;
 import com.example.backend_securify.entities.ImagenProducto;
@@ -14,4 +15,9 @@ public interface IOrdenService {
     public Orden modificarOrden(Orden orden);
     public List<Orden> listarOrden();
     public Orden buscarOrdenPorId(long orden_id);
+
+    //adap
+
+    OrdenDTO insertar(OrdenDTO orden);
+    public void eliminar(Long id);
 }

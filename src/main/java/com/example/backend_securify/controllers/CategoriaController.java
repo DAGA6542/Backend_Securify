@@ -27,7 +27,7 @@ public class CategoriaController {
         return new ResponseEntity<>(categoriaRe, HttpStatus.OK);
     }
 
-    @GetMapping("/listacategoria") //End Point
+    @GetMapping("/listacategorias") //End Point
     public List<CategoriaDTO> listarCategoria() {
         List<Categoria> categorias = categoriaService.listarCategorias();
         ModelMapper modelMapper = new ModelMapper();
@@ -36,7 +36,7 @@ public class CategoriaController {
                 .collect(Collectors.toList());
     }
 
-    @PutMapping("/actualizarcategoria/{id}")
+    @PutMapping("/actualizarcategoria")
     public void actualizarCategoria(@RequestBody CategoriaDTO categoriadto) {
         ModelMapper m = new ModelMapper();
         Categoria categoria = m.map(categoriadto, Categoria.class);
@@ -47,6 +47,28 @@ public class CategoriaController {
     public ResponseEntity<Void> eliminarCategoria(@RequestParam Long categoria_id) {
         categoriaService.eliminarCategoria(categoria_id);
         return ResponseEntity.noContent().build();
+    }
+
+    //Adap
+
+    @PostMapping("/postcategoria")
+    public ResponseEntity<CategoriaDTO> registrarCategoria(@RequestBody CategoriaDTO categoriadto) throws Exception {
+        return ResponseEntity.ok(categoriaService.insertar(categoriadto));
+    }
+
+    @DeleteMapping("/deletecat/{id}")
+    public void eliminar(@PathVariable Long id){
+        categoriaService.eliminar(id);
+    }
+
+    @GetMapping("/listacategoria/{id}")
+    public ResponseEntity<CategoriaDTO> buscarCategoria(@PathVariable Long id) {
+        Categoria c = categoriaService.buscarCategoriaPorId(id);
+        if (c == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        CategoriaDTO dto = new ModelMapper().map(c, CategoriaDTO.class);
+        return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
 }

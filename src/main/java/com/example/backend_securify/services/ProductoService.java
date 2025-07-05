@@ -1,9 +1,13 @@
 package com.example.backend_securify.services;
 
+import com.example.backend_securify.dtos.CategoriaDTO;
+import com.example.backend_securify.dtos.ProductoDTO;
+import com.example.backend_securify.entities.Categoria;
 import com.example.backend_securify.entities.Producto;
 import com.example.backend_securify.interfaces.IProductoService;
 import com.example.backend_securify.repositories.IProductoRepository;
 import jakarta.transaction.Transactional;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +18,8 @@ public class ProductoService implements IProductoService {
 
     @Autowired //inyecta
     private IProductoRepository productoRepository;
+    @Autowired
+    private ModelMapper modelMapper;
 
     @Override
     public Producto insertarProducto(Producto producto) { return productoRepository.save(producto); }
@@ -55,5 +61,20 @@ public class ProductoService implements IProductoService {
     @Override
     public List<Producto> listarProductosPorPrecioMayorMenor() {
         return productoRepository.listarProductosPorPrecioMayorMenor();
+    }
+
+    @Override
+    public ProductoDTO insertar(ProductoDTO producto) {
+        //Convertir el DTO en Entidad
+        Producto proveedorEntidad = modelMapper.map(producto, Producto.class);
+        Producto guardado = productoRepository.save(proveedorEntidad);
+        return modelMapper.map(guardado, ProductoDTO.class);
+    }
+
+    @Override
+    public void eliminar(Long id) {
+        if(productoRepository.existsById(id)){
+            productoRepository.deleteById(id);
+        }
     }
 }

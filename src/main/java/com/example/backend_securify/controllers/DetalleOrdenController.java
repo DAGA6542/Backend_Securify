@@ -1,5 +1,6 @@
 package com.example.backend_securify.controllers;
 
+import com.example.backend_securify.dtos.CategoriaDTO;
 import com.example.backend_securify.dtos.ComentarioDTO;
 import com.example.backend_securify.dtos.DetalleOrdenDTO;
 import com.example.backend_securify.entities.Comentario;
@@ -37,7 +38,7 @@ public class DetalleOrdenController {
                 .collect(Collectors.toList());
     }
 
-    @PutMapping("/actualizardetalleorden/{id}")
+    @PutMapping("/actualizardetalleorden")
     public void actualizarDetalleOrden(@RequestBody DetalleOrdenDTO detalleordendto) {
         ModelMapper m = new ModelMapper();
         DetalleOrden detalleorden = m.map(detalleordendto, DetalleOrden.class);
@@ -48,6 +49,18 @@ public class DetalleOrdenController {
     public ResponseEntity<Void> eliminarDetalleOrden(@RequestParam Long detalleorden_id) {
         detalleOrdenService.eliminarDetalleOrden(detalleorden_id);
         return ResponseEntity.noContent().build();
+    }
+
+    //Adap
+
+    @PostMapping("/postdetalleorden")
+    public ResponseEntity<DetalleOrdenDTO> registrarDetalleOrden(@RequestBody DetalleOrdenDTO detalleOrdendto) throws Exception {
+        return ResponseEntity.ok(detalleOrdenService.insertar(detalleOrdendto));
+    }
+
+    @DeleteMapping("/deletedetalleorden/{id}")
+    public void eliminar(@PathVariable Long id){
+        detalleOrdenService.eliminar(id);
     }
 }
 

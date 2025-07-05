@@ -7,7 +7,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,7 +36,7 @@ public class ProductoController {
     }
 
 
-    @PutMapping("/actualizarproducto/{id}")
+    @PutMapping("/actualizarproducto")
     public void actualizarProducto(@RequestBody ProductoDTO productodto) {
         ModelMapper m = new ModelMapper();
         Producto producto = m.map(productodto, Producto.class);
@@ -52,7 +51,7 @@ public class ProductoController {
 
 
     @GetMapping("/listarPorCategoria")
-    @PreAuthorize("hasRole('ADMIN')")
+
     public ResponseEntity<List<Producto>> listarProductosPorCategoria(@RequestParam("nombre") String nombreCategoria) {
         List<Producto> productos = productoService.listarProductosPorCategoria(nombreCategoria);
 
@@ -60,10 +59,27 @@ public class ProductoController {
     }
 
     @GetMapping("/listarPorPrecio")
-    @PreAuthorize("hasRole('ADMIN')")
+
     public ResponseEntity<List<Producto>> listarProductosPorPrecioMayorMenor() {
         List<Producto> productos = productoService.listarProductosPorPrecioMayorMenor();
 
         return ResponseEntity.ok(productos);
+    }
+
+    //Adap
+
+    @PostMapping("/postproducto")
+    public ResponseEntity<ProductoDTO> registrarProducto(@RequestBody ProductoDTO productodto) throws Exception {
+        return ResponseEntity.ok(productoService.insertar(productodto));
+    }
+
+    @DeleteMapping("/deleteproducto/{id}")
+    public void eliminar(@PathVariable Long id){
+        productoService.eliminar(id);
+    }
+
+    @GetMapping("/listaproducto/{id}")
+    public Producto buscarPorId(@PathVariable Long id){
+        return productoService.buscarProductoPorId(id);
     }
 }

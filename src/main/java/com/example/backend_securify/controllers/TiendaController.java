@@ -1,8 +1,10 @@
 package com.example.backend_securify.controllers;
 
+import com.example.backend_securify.dtos.CategoriaDTO;
 import com.example.backend_securify.dtos.PagoDTO;
 import com.example.backend_securify.dtos.TiendaDTO;
 import com.example.backend_securify.entities.Pago;
+import com.example.backend_securify.entities.Producto;
 import com.example.backend_securify.entities.Tienda;
 import com.example.backend_securify.interfaces.ITiendaService;
 import org.modelmapper.ModelMapper;
@@ -36,7 +38,7 @@ public class TiendaController {
                 .collect(Collectors.toList());
     }
 
-    @PutMapping("/actualizartienda/{id}")
+    @PutMapping("/actualizartienda")
     public void actualizarTienda(@RequestBody TiendaDTO tiendadto) {
         ModelMapper m = new ModelMapper();
         Tienda tienda = m.map(tiendadto, Tienda.class);
@@ -47,5 +49,22 @@ public class TiendaController {
     public ResponseEntity<Void> eliminarTienda(@RequestParam Long tienda_id) {
         tiendaService.eliminarTienda(tienda_id);
         return ResponseEntity.noContent().build();
+    }
+
+    //Adap
+
+    @PostMapping("/posttienda")
+    public ResponseEntity<TiendaDTO> registrarTienda(@RequestBody TiendaDTO tiendadto) throws Exception {
+        return ResponseEntity.ok(tiendaService.insertar(tiendadto));
+    }
+
+    @DeleteMapping("/deletetienda/{id}")
+    public void eliminar(@PathVariable Long id){
+        tiendaService.eliminar(id);
+    }
+
+    @GetMapping("/listatienda/{id}")
+    public Tienda buscarPorId(@PathVariable Long id){
+        return tiendaService.buscarTiendaPorId(id);
     }
 }
