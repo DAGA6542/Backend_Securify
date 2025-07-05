@@ -1,8 +1,12 @@
 package com.example.backend_securify.services;
 
+import com.example.backend_securify.dtos.CategoriaDTO;
+import com.example.backend_securify.dtos.DetalleOrdenDTO;
+import com.example.backend_securify.entities.Categoria;
 import com.example.backend_securify.entities.DetalleOrden;
 import com.example.backend_securify.interfaces.IDetalleOrdenService;
 import com.example.backend_securify.repositories.IDetalleOrdenRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import jakarta.transaction.Transactional;
@@ -13,6 +17,8 @@ import java.util.List;
 public class DetalleOrdenService implements IDetalleOrdenService {
     @Autowired
     private IDetalleOrdenRepository detalleordenRepository;
+    @Autowired
+    private ModelMapper modelMapper;
 
     @Override
     public DetalleOrden insertarDetalleOrden(DetalleOrden detalleorden) {
@@ -47,5 +53,21 @@ public class DetalleOrdenService implements IDetalleOrdenService {
             return detalleordenRepository.findById(detalleorden_id).get();
         }
         return null;
+    }
+
+    //adap
+    @Override
+    public DetalleOrdenDTO insertar(DetalleOrdenDTO detalleOrdendto) {
+        //Convertir el DTO en Entidad
+        DetalleOrden proveedorEntidad = modelMapper.map(detalleOrdendto, DetalleOrden.class);
+        DetalleOrden guardado = detalleordenRepository.save(proveedorEntidad);
+        return modelMapper.map(guardado, DetalleOrdenDTO.class);
+    }
+
+    @Override
+    public void eliminar(Long id) {
+        if(detalleordenRepository.existsById(id)){
+            detalleordenRepository.deleteById(id);
+        }
     }
 }

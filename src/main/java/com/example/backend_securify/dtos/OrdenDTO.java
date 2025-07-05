@@ -1,6 +1,6 @@
 package com.example.backend_securify.dtos;
 
-import com.example.backend_securify.security.entities.User;
+import com.example.backend_securify.entities.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

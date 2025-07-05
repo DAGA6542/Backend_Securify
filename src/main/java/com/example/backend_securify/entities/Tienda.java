@@ -1,5 +1,4 @@
 package com.example.backend_securify.entities;
-import com.example.backend_securify.security.entities.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

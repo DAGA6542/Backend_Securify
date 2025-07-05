@@ -1,5 +1,6 @@
 package com.example.backend_securify.controllers;
 
+import com.example.backend_securify.dtos.CategoriaDTO;
 import com.example.backend_securify.dtos.OrdenDTO;
 import com.example.backend_securify.dtos.PagoDTO;
 import com.example.backend_securify.entities.Orden;
@@ -37,7 +38,7 @@ public class PagoController {
                 .collect(Collectors.toList());
     }
 
-    @PutMapping("/actualizarpago/{id}")
+    @PutMapping("/actualizarpago")
     public void actualizarPago(@RequestBody PagoDTO pagodto) {
         ModelMapper m = new ModelMapper();
         Pago pago = m.map(pagodto, Pago.class);
@@ -48,5 +49,17 @@ public class PagoController {
     public ResponseEntity<Void> eliminarPago(@RequestParam Long pago_id) {
         pagoService.eliminarPago(pago_id);
         return ResponseEntity.noContent().build();
+    }
+
+    //Adap
+
+    @PostMapping("/postpago")
+    public ResponseEntity<PagoDTO> registrarPago(@RequestBody PagoDTO pagodto) throws Exception {
+        return ResponseEntity.ok(pagoService.insertar(pagodto));
+    }
+
+    @DeleteMapping("/deletecat/{id}")
+    public void eliminar(@PathVariable Long id){
+        pagoService.eliminar(id);
     }
 }
