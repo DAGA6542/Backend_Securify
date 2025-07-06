@@ -29,7 +29,7 @@ public class DetalleOrdenController {
         return new ResponseEntity<>(detalleordenRe, HttpStatus.OK);
     }
 
-    @GetMapping("/listadetalleorden") //End Point
+    @GetMapping("/listadetalleordenes") //End Point
     public List<DetalleOrdenDTO> listarDetalleOrden() {
         List<DetalleOrden> detalleordenes = detalleOrdenService.listarDetalleOrden();
         ModelMapper modelMapper = new ModelMapper();
@@ -61,6 +61,16 @@ public class DetalleOrdenController {
     @DeleteMapping("/deletedetalleorden/{id}")
     public void eliminar(@PathVariable Long id){
         detalleOrdenService.eliminar(id);
+    }
+
+    @GetMapping("/listadetalle/{id}")
+    public ResponseEntity<DetalleOrdenDTO> listaComentario(@PathVariable Long id) {
+        DetalleOrden c = detalleOrdenService.buscarDetalleOrdenPorId(id);
+        if (c == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        DetalleOrdenDTO dto = new ModelMapper().map(c, DetalleOrdenDTO.class);
+        return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 }
 

@@ -20,4 +20,5 @@ public class PagoDTO implements Serializable {
     String metodo;
     double monto;
     LocalDate fecha;
+    Orden orden_id;
 }

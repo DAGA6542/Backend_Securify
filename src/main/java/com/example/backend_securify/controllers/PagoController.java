@@ -29,7 +29,7 @@ public class PagoController {
         return new ResponseEntity<>(pagoRe, HttpStatus.OK);
     }
 
-    @GetMapping("/listapago") //End Point
+    @GetMapping("/listapagos") //End Point
     public List<PagoDTO> listarPago() {
         List<Pago> pagos = pagoService.listarPago();
         ModelMapper modelMapper = new ModelMapper();
@@ -58,8 +58,18 @@ public class PagoController {
         return ResponseEntity.ok(pagoService.insertar(pagodto));
     }
 
-    @DeleteMapping("/deletecat/{id}")
+    @DeleteMapping("/deletepago/{id}")
     public void eliminar(@PathVariable Long id){
         pagoService.eliminar(id);
+    }
+
+    @GetMapping("/listapago/{id}")
+    public ResponseEntity<PagoDTO> buscarPago(@PathVariable Long id) {
+        Pago c = pagoService.buscarPagoPorId(id);
+        if (c == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        PagoDTO dto = new ModelMapper().map(c, PagoDTO.class);
+        return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 }
