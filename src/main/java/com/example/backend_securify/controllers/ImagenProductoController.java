@@ -1,8 +1,10 @@
 package com.example.backend_securify.controllers;
 
 
+import com.example.backend_securify.dtos.CategoriaDTO;
 import com.example.backend_securify.dtos.ImagenProductoDTO;
 import com.example.backend_securify.entities.ImagenProducto;
+import com.example.backend_securify.entities.Tienda;
 import com.example.backend_securify.services.ImagenProductoService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +29,7 @@ public class ImagenProductoController {
         return new ResponseEntity<>(imagenproducto, HttpStatus.OK);
     }
 
-    @GetMapping("/listaimagenproducto") //End Point
+    @GetMapping("/listaimagenproductos") //End Point
     public List<ImagenProductoDTO> listarImagenProducto() {
         List<ImagenProducto> imagenproductos = imagenProductoService.listarImagenProducto();
         ModelMapper modelMapper = new ModelMapper();
@@ -36,7 +38,7 @@ public class ImagenProductoController {
                 .collect(Collectors.toList());
     }
 
-    @PutMapping("/actualizarimagenproducto/{id}")
+    @PutMapping("/actualizarimagenproducto")
     public void actualizarImagenProducto(@RequestBody ImagenProductoDTO imagenproductodto) {
         ModelMapper m = new ModelMapper();
         ImagenProducto imagenproducto = m.map(imagenproductodto, ImagenProducto.class);
@@ -48,6 +50,23 @@ public class ImagenProductoController {
     public ResponseEntity<Void> eliminarImagenProducto(@RequestParam Long imagenproducto_id) {
         imagenProductoService.eliminarImagenProducto(imagenproducto_id);
         return ResponseEntity.noContent().build();
+    }
+
+    //Adap
+
+    @PostMapping("/postimagenproducto")
+    public ResponseEntity<ImagenProductoDTO> registrarImagenProducto(@RequestBody ImagenProductoDTO imagenproductodto) throws Exception {
+        return ResponseEntity.ok(imagenProductoService.insertar(imagenproductodto));
+    }
+
+    @DeleteMapping("/deleteimagenproducto/{id}")
+    public void eliminar(@PathVariable Long id){
+        imagenProductoService.eliminar(id);
+    }
+
+    @GetMapping("/listaimagenproducto/{id}")
+    public ImagenProducto buscarPorId(@PathVariable Long id){
+        return imagenProductoService.buscarImagenProductoPorId(id);
     }
 
 }

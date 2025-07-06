@@ -1,6 +1,8 @@
 package com.example.backend_securify.controllers;
 
+import com.example.backend_securify.dtos.CategoriaDTO;
 import com.example.backend_securify.dtos.OrdenDTO;
+import com.example.backend_securify.entities.Categoria;
 import com.example.backend_securify.entities.Orden;
 import com.example.backend_securify.interfaces.IOrdenService;
 import org.modelmapper.ModelMapper;
@@ -27,7 +29,7 @@ public class OrdenController {
         return new ResponseEntity<>(ordenRe, HttpStatus.OK);
     }
 
-    @GetMapping("/listaorden") //End Point
+    @GetMapping("/listaordenes") //End Point
     public List<OrdenDTO> listarOrden() {
         List<Orden> ordenes = ordenService.listarOrden();
         ModelMapper modelMapper = new ModelMapper();
@@ -36,7 +38,7 @@ public class OrdenController {
                 .collect(Collectors.toList());
     }
 
-    @PutMapping("/actualizarorden/{id}")
+    @PutMapping("/actualizarorden")
     public void actualizarOrden(@RequestBody OrdenDTO ordendto) {
         ModelMapper m = new ModelMapper();
         Orden orden = m.map(ordendto, Orden.class);
@@ -47,6 +49,28 @@ public class OrdenController {
     public ResponseEntity<Void> eliminarOrden(@RequestParam Long orden_id) {
         ordenService.eliminarOrden(orden_id);
         return ResponseEntity.noContent().build();
+    }
+
+    //Adap
+
+    @PostMapping("/postorden")
+    public ResponseEntity<OrdenDTO> registrarOrden(@RequestBody OrdenDTO ordendto) throws Exception {
+        return ResponseEntity.ok(ordenService.insertar(ordendto));
+    }
+
+    @DeleteMapping("/deleteorden/{id}")
+    public void eliminar(@PathVariable Long id){
+        ordenService.eliminar(id);
+    }
+
+    @GetMapping("/listaorden/{id}")
+    public ResponseEntity<OrdenDTO> buscarOrden(@PathVariable Long id) {
+        Orden c = ordenService.buscarOrdenPorId(id);
+        if (c == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        OrdenDTO dto = new ModelMapper().map(c, OrdenDTO.class);
+        return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
 }

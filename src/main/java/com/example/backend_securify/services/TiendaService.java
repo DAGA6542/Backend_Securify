@@ -1,8 +1,12 @@
 package com.example.backend_securify.services;
 
+import com.example.backend_securify.dtos.CategoriaDTO;
+import com.example.backend_securify.dtos.TiendaDTO;
+import com.example.backend_securify.entities.Categoria;
 import com.example.backend_securify.entities.Tienda;
 import com.example.backend_securify.interfaces.ITiendaService;
 import com.example.backend_securify.repositories.ITiendaRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +17,8 @@ public class TiendaService implements ITiendaService {
 
     @Autowired
     private ITiendaRepository tiendaRepository;
+    @Autowired
+    private ModelMapper modelMapper;
 
     @Override
     public Tienda insertarTienda(Tienda tienda) {
@@ -45,5 +51,21 @@ public class TiendaService implements ITiendaService {
             return tiendaRepository.findById(tienda_id).get();
         }
         return null;
+    }
+
+    //adap
+    @Override
+    public TiendaDTO insertar(TiendaDTO tienda) {
+        //Convertir el DTO en Entidad
+        Tienda proveedorEntidad = modelMapper.map(tienda, Tienda.class);
+        Tienda guardado = tiendaRepository.save(proveedorEntidad);
+        return modelMapper.map(guardado, TiendaDTO.class);
+    }
+
+    @Override
+    public void eliminar(Long id) {
+        if(tiendaRepository.existsById(id)){
+            tiendaRepository.deleteById(id);
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.example.backend_securify.interfaces;
 
+import com.example.backend_securify.dtos.CategoriaDTO;
 import com.example.backend_securify.dtos.ComentarioDTO;
 import com.example.backend_securify.entities.Categoria;
 import com.example.backend_securify.entities.Comentario;
@@ -13,4 +14,7 @@ public interface IComentarioService {
     public Comentario modificarComentario(Comentario comentario);
     public List<Comentario> listarComentario();
     public Comentario buscarComentarioPorId(long comentario_id);
+
+    ComentarioDTO insertar(ComentarioDTO comentario);
+    public void eliminar(Long id);
 }

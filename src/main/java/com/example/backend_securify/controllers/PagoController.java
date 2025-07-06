@@ -1,5 +1,6 @@
 package com.example.backend_securify.controllers;
 
+import com.example.backend_securify.dtos.CategoriaDTO;
 import com.example.backend_securify.dtos.OrdenDTO;
 import com.example.backend_securify.dtos.PagoDTO;
 import com.example.backend_securify.entities.Orden;
@@ -28,7 +29,7 @@ public class PagoController {
         return new ResponseEntity<>(pagoRe, HttpStatus.OK);
     }
 
-    @GetMapping("/listapago") //End Point
+    @GetMapping("/listapagos") //End Point
     public List<PagoDTO> listarPago() {
         List<Pago> pagos = pagoService.listarPago();
         ModelMapper modelMapper = new ModelMapper();
@@ -37,7 +38,7 @@ public class PagoController {
                 .collect(Collectors.toList());
     }
 
-    @PutMapping("/actualizarpago/{id}")
+    @PutMapping("/actualizarpago")
     public void actualizarPago(@RequestBody PagoDTO pagodto) {
         ModelMapper m = new ModelMapper();
         Pago pago = m.map(pagodto, Pago.class);
@@ -48,5 +49,27 @@ public class PagoController {
     public ResponseEntity<Void> eliminarPago(@RequestParam Long pago_id) {
         pagoService.eliminarPago(pago_id);
         return ResponseEntity.noContent().build();
+    }
+
+    //Adap
+
+    @PostMapping("/postpago")
+    public ResponseEntity<PagoDTO> registrarPago(@RequestBody PagoDTO pagodto) throws Exception {
+        return ResponseEntity.ok(pagoService.insertar(pagodto));
+    }
+
+    @DeleteMapping("/deletepago/{id}")
+    public void eliminar(@PathVariable Long id){
+        pagoService.eliminar(id);
+    }
+
+    @GetMapping("/listapago/{id}")
+    public ResponseEntity<PagoDTO> buscarPago(@PathVariable Long id) {
+        Pago c = pagoService.buscarPagoPorId(id);
+        if (c == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        PagoDTO dto = new ModelMapper().map(c, PagoDTO.class);
+        return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 }

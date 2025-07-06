@@ -1,7 +1,9 @@
 package com.example.backend_securify.controllers;
 
+import com.example.backend_securify.dtos.CategoriaDTO;
 import com.example.backend_securify.dtos.ComentarioDTO;
 import com.example.backend_securify.dtos.ProductoDTO;
+import com.example.backend_securify.entities.Categoria;
 import com.example.backend_securify.entities.Comentario;
 import com.example.backend_securify.entities.Producto;
 import com.example.backend_securify.interfaces.IComentarioService;
@@ -15,6 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true", exposedHeaders = "Authorization") //para cloud
 @RequestMapping("/comentario")
 public class ComentarioController {
     @Autowired
@@ -26,7 +29,7 @@ public class ComentarioController {
         return new ResponseEntity<>(comentarioRe, HttpStatus.OK);
     }
 
-    @GetMapping("/listacomentario") //End Point
+    @GetMapping("/listacomentarios") //End Point
     public List<ComentarioDTO> listarComentario() {
         List<Comentario> comentarios = comentarioService.listarComentario();
         ModelMapper modelMapper = new ModelMapper();
@@ -35,7 +38,7 @@ public class ComentarioController {
                 .collect(Collectors.toList());
     }
 
-    @PutMapping("/actualizarcomentario/{id}")
+    @PutMapping("/actualizarcomentario")
     public void actualizarComentario(@RequestBody ComentarioDTO comentariodto) {
         ModelMapper m = new ModelMapper();
         Comentario comentario = m.map(comentariodto, Comentario.class);
@@ -46,6 +49,28 @@ public class ComentarioController {
     public ResponseEntity<Void> eliminarComentario(@RequestParam Long comentario_id) {
         comentarioService.eliminarComentario(comentario_id);
         return ResponseEntity.noContent().build();
+    }
+
+    //Adap
+
+    @PostMapping("/postcomentario")
+    public ResponseEntity<ComentarioDTO> registrarComentario(@RequestBody ComentarioDTO comentariodto) throws Exception {
+        return ResponseEntity.ok(comentarioService.insertar(comentariodto));
+    }
+
+    @DeleteMapping("/deletecomentario/{id}")
+    public void eliminar(@PathVariable Long id){
+        comentarioService.eliminar(id);
+    }
+
+    @GetMapping("/listacomentario/{id}")
+    public ResponseEntity<ComentarioDTO> listaComentario(@PathVariable Long id) {
+        Comentario c = comentarioService.buscarComentarioPorId(id);
+        if (c == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        ComentarioDTO dto = new ModelMapper().map(c, ComentarioDTO.class);
+        return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 }
 

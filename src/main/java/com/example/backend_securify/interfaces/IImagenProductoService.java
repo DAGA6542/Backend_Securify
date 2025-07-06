@@ -1,5 +1,7 @@
 package com.example.backend_securify.interfaces;
 
+import com.example.backend_securify.dtos.CategoriaDTO;
+import com.example.backend_securify.dtos.ImagenProductoDTO;
 import com.example.backend_securify.entities.ImagenProducto;
 
 import java.util.List;
@@ -11,4 +13,9 @@ public interface IImagenProductoService {
     public ImagenProducto modificarImagenProducto(ImagenProducto imagenProducto);
     public List<ImagenProducto> listarImagenProducto();
     public ImagenProducto buscarImagenProductoPorId(long imagenproducto_id);
+
+    //adap
+
+    ImagenProductoDTO insertar(ImagenProductoDTO imagenProducto);
+    public void eliminar(Long id);
 }

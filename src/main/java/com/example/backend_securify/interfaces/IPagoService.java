@@ -1,5 +1,6 @@
 package com.example.backend_securify.interfaces;
 
+import com.example.backend_securify.dtos.CategoriaDTO;
 import com.example.backend_securify.dtos.PagoDTO;
 import com.example.backend_securify.entities.Orden;
 import com.example.backend_securify.entities.Pago;
@@ -13,4 +14,9 @@ public interface IPagoService {
     public Pago modificarPago(Pago pago);
     public List<Pago> listarPago();
     public Pago buscarPagoPorId(long pago_id);
+
+    //adap
+
+    PagoDTO insertar(PagoDTO pago);
+    public void eliminar(Long id);
 }

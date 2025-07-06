@@ -14,4 +14,8 @@ public interface ICategoriaService {
     public List<Categoria> listarCategorias();
     public Categoria buscarCategoriaPorId(long categoria_id);
 
+    //adap
+
+    CategoriaDTO insertar(CategoriaDTO categoria);
+    public void eliminar(Long id);
 }
