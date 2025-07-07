@@ -1,7 +1,7 @@
 package com.example.backend_securify.security.controllers;
 
-import com.example.backend_securify.security.dtos.AuthRequestDTO;
-import com.example.backend_securify.security.dtos.AuthResponseDTO;
+import com.example.backend_securify.security.DTO.AuthRequestDTO;
+import com.example.backend_securify.security.DTO.AuthResponseDTO;
 import com.example.backend_securify.security.services.CustomUserDetailsService;
 import com.example.backend_securify.security.util.JwtUtil;
 import org.springframework.http.HttpHeaders;
@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @CrossOrigin(origins = "${ip.frontend}", allowCredentials = "true", exposedHeaders = "Authorization") //para cloud
 //@CrossOrigin(origins = "*", allowedHeaders = "*", exposedHeaders = "Authorization")
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/securify")
 public class AuthController {
 
     private final AuthenticationManager authenticationManager;
