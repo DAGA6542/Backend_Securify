@@ -80,6 +80,7 @@ public class ComentarioController {
     }
 
     @GetMapping("/obtenercomentariosusuario")
+    @PreAuthorize("hasRole('ADMIN')")
     public List<ComentarioDTO> obtenerComentariosPorUsuario(@RequestParam Long user_id) {
         return comentarioService.obtenerComentariosPorUsuario(user_id).stream().map(y->{
             ModelMapper m = new ModelMapper();
@@ -89,6 +90,7 @@ public class ComentarioController {
     }
 
     @GetMapping("/obtenercomentarioproducto")
+    @PreAuthorize("hasRole('ADMIN')")
     public List<ComentarioDTO> obtenerComentariosPorProducto(@RequestParam Long producto_id) {
         return comentarioService.obtenerComentariosPorProducto(producto_id).stream().map(y->{
             ModelMapper m = new ModelMapper();
