@@ -2,6 +2,7 @@ package com.example.backend_securify.services;
 
 import com.example.backend_securify.dtos.CategoriaDTO;
 import com.example.backend_securify.entities.Categoria;
+import com.example.backend_securify.entities.Comentario;
 import com.example.backend_securify.interfaces.ICategoriaService;
 import com.example.backend_securify.repositories.ICategoriaRepository;
 import jakarta.transaction.Transactional;
@@ -69,5 +70,6 @@ public class CategoriaService implements ICategoriaService {
             categoriaRepository.deleteById(id);
         }
     }
+
 }
 

@@ -71,4 +71,14 @@ public class ComentarioService implements IComentarioService {
             comentarioRepository.deleteById(id);
         }
     }
+
+    @Override
+    public List<Comentario> obtenerComentariosPorUsuario(Long user_id) {
+        return comentarioRepository.obtenerComentariosPorUsuario(user_id);
+    }
+
+    @Override
+    public List<Comentario> obtenerComentariosPorProducto(Long producto_id) {
+        return comentarioRepository.obtenerComentariosPorProducto(producto_id);
+    }
 }

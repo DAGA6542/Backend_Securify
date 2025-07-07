@@ -78,6 +78,24 @@ public class ComentarioController {
         ComentarioDTO dto = new ModelMapper().map(c, ComentarioDTO.class);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
+
+    @GetMapping("/obtenercomentariosusuario")
+    public List<ComentarioDTO> obtenerComentariosPorUsuario(@RequestParam Long user_id) {
+        return comentarioService.obtenerComentariosPorUsuario(user_id).stream().map(y->{
+            ModelMapper m = new ModelMapper();
+            m.map(y,ComentarioDTO.class);
+            return m.map(y,ComentarioDTO.class);
+        }).collect(Collectors.toList());
+    }
+
+    @GetMapping("/obtenercomentarioproducto")
+    public List<ComentarioDTO> obtenerComentariosPorProducto(@RequestParam Long producto_id) {
+        return comentarioService.obtenerComentariosPorProducto(producto_id).stream().map(y->{
+            ModelMapper m = new ModelMapper();
+            m.map(y,ComentarioDTO.class);
+            return m.map(y,ComentarioDTO.class);
+        }).collect(Collectors.toList());
+    }
 }
 
 

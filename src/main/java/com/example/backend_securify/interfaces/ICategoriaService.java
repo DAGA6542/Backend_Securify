@@ -2,6 +2,7 @@ package com.example.backend_securify.interfaces;
 
 import com.example.backend_securify.dtos.CategoriaDTO;
 import com.example.backend_securify.entities.Categoria;
+import com.example.backend_securify.entities.Comentario;
 import com.example.backend_securify.entities.Producto;
 
 import java.util.List;
@@ -18,4 +19,5 @@ public interface ICategoriaService {
 
     CategoriaDTO insertar(CategoriaDTO categoria);
     public void eliminar(Long id);
+
 }

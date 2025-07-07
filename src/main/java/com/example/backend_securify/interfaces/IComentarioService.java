@@ -17,4 +17,8 @@ public interface IComentarioService {
 
     ComentarioDTO insertar(ComentarioDTO comentario);
     public void eliminar(Long id);
+
+    public List<Comentario> obtenerComentariosPorUsuario(Long user_id);
+    public List<Comentario> obtenerComentariosPorProducto(Long producto_id);
+
 }
