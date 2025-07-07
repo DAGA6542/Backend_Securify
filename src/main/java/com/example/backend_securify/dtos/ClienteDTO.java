@@ -5,15 +5,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.HashSet;
-import java.util.Set;
-
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDTO {
-    private Long user_id;
+public class ClienteDTO {
+    private Long cliente_id;
     private String username;
     private String password;
     private String nombre;

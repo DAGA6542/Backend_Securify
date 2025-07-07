@@ -25,10 +25,10 @@ public class Tienda {
     // Relación con el usuario propietario de la tienda
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user_id;
+    private Cliente user_id;
 
     // Relación con productos: una tienda tiene muchos productos
-    @OneToMany(mappedBy = "tienda", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "tienda", cascade = CascadeType.ALL)
     private List<Producto> productos;
 
     // Relación opcional con comentarios (si aplica que los usuarios comenten una tienda)

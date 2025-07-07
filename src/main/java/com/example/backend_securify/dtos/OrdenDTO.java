@@ -1,7 +1,6 @@
 package com.example.backend_securify.dtos;
 
-import com.example.backend_securify.entities.User;
-import jakarta.persistence.*;
+import com.example.backend_securify.entities.Cliente;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,5 +18,5 @@ public class OrdenDTO implements Serializable {
     Long orden_id;
     LocalDate fecha;
     String estado;
-    User user_id;
+    Cliente user_id;
 }

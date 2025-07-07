@@ -28,8 +28,13 @@ public class Comentario {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user_id;
+    private Cliente user_id;
     @ManyToOne
     @JoinColumn(name = "producto_id")
     private Producto producto_id;
+
+    @ManyToOne
+    @JoinColumn(name = "tienda_id")
+    private Tienda tienda;
+
 }
