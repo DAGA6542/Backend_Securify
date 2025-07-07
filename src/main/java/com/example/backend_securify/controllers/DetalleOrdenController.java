@@ -10,6 +10,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,12 +25,14 @@ public class DetalleOrdenController {
     private IDetalleOrdenService detalleOrdenService;
 
     @PostMapping("/insertardetalleorden") //End Point
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<DetalleOrden> insertarDetalleOrden(@RequestBody DetalleOrden detalleorden) {
         DetalleOrden detalleordenRe = detalleOrdenService.insertarDetalleOrden(detalleorden);
         return new ResponseEntity<>(detalleordenRe, HttpStatus.OK);
     }
 
     @GetMapping("/listadetalleordenes") //End Point
+    @PreAuthorize("hasRole('ADMIN')")
     public List<DetalleOrdenDTO> listarDetalleOrden() {
         List<DetalleOrden> detalleordenes = detalleOrdenService.listarDetalleOrden();
         ModelMapper modelMapper = new ModelMapper();
@@ -39,6 +42,7 @@ public class DetalleOrdenController {
     }
 
     @PutMapping("/actualizardetalleorden")
+    @PreAuthorize("hasRole('ADMIN')")
     public void actualizarDetalleOrden(@RequestBody DetalleOrdenDTO detalleordendto) {
         ModelMapper m = new ModelMapper();
         DetalleOrden detalleorden = m.map(detalleordendto, DetalleOrden.class);
@@ -59,11 +63,13 @@ public class DetalleOrdenController {
     }
 
     @DeleteMapping("/deletedetalleorden/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public void eliminar(@PathVariable Long id){
         detalleOrdenService.eliminar(id);
     }
 
     @GetMapping("/listadetalle/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<DetalleOrdenDTO> listaComentario(@PathVariable Long id) {
         DetalleOrden c = detalleOrdenService.buscarDetalleOrdenPorId(id);
         if (c == null) {

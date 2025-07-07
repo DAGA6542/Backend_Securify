@@ -10,6 +10,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,12 +25,14 @@ public class PagoController {
     private IPagoService pagoService;
 
     @PostMapping("/insertarpago") //End Point
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Pago> insertarPago(@RequestBody Pago pago) {
         Pago pagoRe = pagoService.insertarPago(pago);
         return new ResponseEntity<>(pagoRe, HttpStatus.OK);
     }
 
     @GetMapping("/listapagos") //End Point
+    @PreAuthorize("hasRole('ADMIN')")
     public List<PagoDTO> listarPago() {
         List<Pago> pagos = pagoService.listarPago();
         ModelMapper modelMapper = new ModelMapper();
@@ -39,6 +42,7 @@ public class PagoController {
     }
 
     @PutMapping("/actualizarpago")
+    @PreAuthorize("hasRole('ADMIN')")
     public void actualizarPago(@RequestBody PagoDTO pagodto) {
         ModelMapper m = new ModelMapper();
         Pago pago = m.map(pagodto, Pago.class);
@@ -59,11 +63,13 @@ public class PagoController {
     }
 
     @DeleteMapping("/deletepago/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public void eliminar(@PathVariable Long id){
         pagoService.eliminar(id);
     }
 
     @GetMapping("/listapago/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<PagoDTO> buscarPago(@PathVariable Long id) {
         Pago c = pagoService.buscarPagoPorId(id);
         if (c == null) {

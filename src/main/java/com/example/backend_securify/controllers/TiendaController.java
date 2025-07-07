@@ -11,6 +11,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,12 +25,14 @@ public class TiendaController {
     private ITiendaService tiendaService;
 
     @PostMapping("/insertartienda") //End Point
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Tienda> insertarTienda(@RequestBody Tienda tienda) {
         Tienda tiendaRe = tiendaService.insertarTienda(tienda);
         return new ResponseEntity<>(tiendaRe, HttpStatus.OK);
     }
 
-    @GetMapping("/listatienda") //End Point
+    @GetMapping("/listatiendas") //End Point
+    @PreAuthorize("hasRole('ADMIN')")
     public List<TiendaDTO> listarTienda() {
         List<Tienda> tiendas = tiendaService.listarTienda();
         ModelMapper modelMapper = new ModelMapper();
@@ -39,6 +42,7 @@ public class TiendaController {
     }
 
     @PutMapping("/actualizartienda")
+    @PreAuthorize("hasRole('ADMIN')")
     public void actualizarTienda(@RequestBody TiendaDTO tiendadto) {
         ModelMapper m = new ModelMapper();
         Tienda tienda = m.map(tiendadto, Tienda.class);
@@ -59,11 +63,13 @@ public class TiendaController {
     }
 
     @DeleteMapping("/deletetienda/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public void eliminar(@PathVariable Long id){
         tiendaService.eliminar(id);
     }
 
     @GetMapping("/listatienda/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public Tienda buscarPorId(@PathVariable Long id){
         return tiendaService.buscarTiendaPorId(id);
     }

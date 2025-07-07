@@ -10,6 +10,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,12 +25,14 @@ public class ImagenProductoController {
     private ImagenProductoService imagenProductoService;
 
     @PostMapping("/insertarimagenproducto") //End Point
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ImagenProducto> insertarImagenProducto(@RequestBody ImagenProducto imagenproducto) {
         ImagenProducto imagenproductoRe = imagenProductoService.insertarImagenProducto(imagenproducto);
         return new ResponseEntity<>(imagenproducto, HttpStatus.OK);
     }
 
     @GetMapping("/listaimagenproductos") //End Point
+    @PreAuthorize("hasRole('ADMIN')")
     public List<ImagenProductoDTO> listarImagenProducto() {
         List<ImagenProducto> imagenproductos = imagenProductoService.listarImagenProducto();
         ModelMapper modelMapper = new ModelMapper();
@@ -39,6 +42,7 @@ public class ImagenProductoController {
     }
 
     @PutMapping("/actualizarimagenproducto")
+    @PreAuthorize("hasRole('ADMIN')")
     public void actualizarImagenProducto(@RequestBody ImagenProductoDTO imagenproductodto) {
         ModelMapper m = new ModelMapper();
         ImagenProducto imagenproducto = m.map(imagenproductodto, ImagenProducto.class);
@@ -60,11 +64,13 @@ public class ImagenProductoController {
     }
 
     @DeleteMapping("/deleteimagenproducto/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public void eliminar(@PathVariable Long id){
         imagenProductoService.eliminar(id);
     }
 
     @GetMapping("/listaimagenproducto/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ImagenProducto buscarPorId(@PathVariable Long id){
         return imagenProductoService.buscarImagenProductoPorId(id);
     }

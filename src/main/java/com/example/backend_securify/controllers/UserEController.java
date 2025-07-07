@@ -1,13 +1,14 @@
 package com.example.backend_securify.controllers;
 
-import com.example.backend_securify.dtos.CategoriaDTO;
 import com.example.backend_securify.dtos.UserDTO;
-import com.example.backend_securify.entities.User;
+import com.example.backend_securify.security.entities.User;
+import com.example.backend_securify.security.services.UserService;
 import com.example.backend_securify.services.UserEService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,12 +25,14 @@ public class UserEController {
     private UserEService userService;
 
     @PostMapping("/insertaruser") //End Point
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<User> insertarUser(@RequestBody User user) {
         User userRe = userService.insertarUser(user);
         return new ResponseEntity<>(userRe, HttpStatus.OK);
     }
 
     @GetMapping("/listausers") //End Point
+    @PreAuthorize("hasRole('ADMIN')")
     public List<UserDTO> listarUser() {
         List<User> users = userService.listarUser();
         ModelMapper modelMapper = new ModelMapper();
@@ -39,6 +42,7 @@ public class UserEController {
     }
 
     @PutMapping("/actualizaruser")
+    @PreAuthorize("hasRole('ADMIN')")
     public void actualizarUser(@RequestBody UserDTO userdto) {
         ModelMapper m = new ModelMapper();
         User user = m.map(userdto, User.class);
@@ -59,6 +63,7 @@ public class UserEController {
     }
 
     @DeleteMapping("/deleteuser/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public void eliminar(@PathVariable Long id){
         userService.eliminar(id);
     }

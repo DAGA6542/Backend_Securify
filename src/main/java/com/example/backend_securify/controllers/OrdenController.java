@@ -9,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,12 +25,14 @@ public class OrdenController {
     private IOrdenService ordenService;
 
     @PostMapping("/insertarorden") //End Point
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Orden> insertarOrden(@RequestBody Orden orden) {
         Orden ordenRe = ordenService.insertarOrden(orden);
         return new ResponseEntity<>(ordenRe, HttpStatus.OK);
     }
 
     @GetMapping("/listaordenes") //End Point
+    @PreAuthorize("hasRole('ADMIN')")
     public List<OrdenDTO> listarOrden() {
         List<Orden> ordenes = ordenService.listarOrden();
         ModelMapper modelMapper = new ModelMapper();
@@ -39,6 +42,7 @@ public class OrdenController {
     }
 
     @PutMapping("/actualizarorden")
+    @PreAuthorize("hasRole('ADMIN')")
     public void actualizarOrden(@RequestBody OrdenDTO ordendto) {
         ModelMapper m = new ModelMapper();
         Orden orden = m.map(ordendto, Orden.class);
@@ -59,11 +63,13 @@ public class OrdenController {
     }
 
     @DeleteMapping("/deleteorden/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public void eliminar(@PathVariable Long id){
         ordenService.eliminar(id);
     }
 
     @GetMapping("/listaorden/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<OrdenDTO> buscarOrden(@PathVariable Long id) {
         Orden c = ordenService.buscarOrdenPorId(id);
         if (c == null) {

@@ -13,7 +13,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDTO {
-    private Long user_id;
+    private Long id;
     private String username;
     private String password;
     private String nombre;

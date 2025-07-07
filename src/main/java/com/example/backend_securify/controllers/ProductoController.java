@@ -7,6 +7,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,12 +22,14 @@ public class ProductoController {
     private IProductoService productoService;
 
     @PostMapping("/insertarproducto") //End Point
+    @PreAuthorize("hasRole('ADMIN')")
         public ResponseEntity<Producto> insertarProducto(@RequestBody Producto producto) {
         Producto productoRe = productoService.insertarProducto(producto);
         return new ResponseEntity<>(productoRe, HttpStatus.OK);
     }
 
     @GetMapping("/listaproducto") //End Point
+    @PreAuthorize("hasRole('ADMIN')")
     public List<ProductoDTO> listarProductos() {
         List<Producto> productos = productoService.listarProductos();
         ModelMapper modelMapper = new ModelMapper();
@@ -37,6 +40,7 @@ public class ProductoController {
 
 
     @PutMapping("/actualizarproducto")
+    @PreAuthorize("hasRole('ADMIN')")
     public void actualizarProducto(@RequestBody ProductoDTO productodto) {
         ModelMapper m = new ModelMapper();
         Producto producto = m.map(productodto, Producto.class);

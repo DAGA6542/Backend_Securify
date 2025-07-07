@@ -11,6 +11,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,12 +25,14 @@ public class ComentarioController {
     private IComentarioService comentarioService;
 
     @PostMapping("/insertarcomentario") //End Point
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Comentario> insertarComentario(@RequestBody Comentario comentario) {
         Comentario comentarioRe = comentarioService.insertarComentario(comentario);
         return new ResponseEntity<>(comentarioRe, HttpStatus.OK);
     }
 
     @GetMapping("/listacomentarios") //End Point
+    @PreAuthorize("hasRole('ADMIN')")
     public List<ComentarioDTO> listarComentario() {
         List<Comentario> comentarios = comentarioService.listarComentario();
         ModelMapper modelMapper = new ModelMapper();
@@ -39,6 +42,7 @@ public class ComentarioController {
     }
 
     @PutMapping("/actualizarcomentario")
+    @PreAuthorize("hasRole('ADMIN')")
     public void actualizarComentario(@RequestBody ComentarioDTO comentariodto) {
         ModelMapper m = new ModelMapper();
         Comentario comentario = m.map(comentariodto, Comentario.class);
@@ -59,11 +63,13 @@ public class ComentarioController {
     }
 
     @DeleteMapping("/deletecomentario/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public void eliminar(@PathVariable Long id){
         comentarioService.eliminar(id);
     }
 
     @GetMapping("/listacomentario/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ComentarioDTO> listaComentario(@PathVariable Long id) {
         Comentario c = comentarioService.buscarComentarioPorId(id);
         if (c == null) {

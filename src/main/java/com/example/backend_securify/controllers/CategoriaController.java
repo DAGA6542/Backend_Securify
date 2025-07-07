@@ -8,6 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,12 +23,14 @@ public class CategoriaController {
     private ICategoriaService categoriaService;
 
     @PostMapping("/insertarcategoria") //End Point
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Categoria> insertarCategoria(@RequestBody Categoria categoria) {
         Categoria categoriaRe = categoriaService.insertarCategoria(categoria);
         return new ResponseEntity<>(categoriaRe, HttpStatus.OK);
     }
 
     @GetMapping("/listacategorias") //End Point
+    @PreAuthorize("hasRole('ADMIN')")
     public List<CategoriaDTO> listarCategoria() {
         List<Categoria> categorias = categoriaService.listarCategorias();
         ModelMapper modelMapper = new ModelMapper();
@@ -37,6 +40,7 @@ public class CategoriaController {
     }
 
     @PutMapping("/actualizarcategoria")
+    @PreAuthorize("hasRole('ADMIN')")
     public void actualizarCategoria(@RequestBody CategoriaDTO categoriadto) {
         ModelMapper m = new ModelMapper();
         Categoria categoria = m.map(categoriadto, Categoria.class);
@@ -57,11 +61,13 @@ public class CategoriaController {
     }
 
     @DeleteMapping("/deletecat/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public void eliminar(@PathVariable Long id){
         categoriaService.eliminar(id);
     }
 
     @GetMapping("/listacategoria/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<CategoriaDTO> buscarCategoria(@PathVariable Long id) {
         Categoria c = categoriaService.buscarCategoriaPorId(id);
         if (c == null) {

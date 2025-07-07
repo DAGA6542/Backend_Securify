@@ -1,9 +1,6 @@
 package com.example.backend_securify.dtos;
 
-import com.example.backend_securify.entities.User;
-import jakarta.persistence.Column;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import com.example.backend_securify.security.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
